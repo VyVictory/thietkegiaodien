@@ -1,5 +1,6 @@
-import React from 'react'
+import React from "react";
 
-export default function size() {
-  return "";
-}
+const NavCss = () => {
+  return "h-[64px] ";
+};
+export default NavCss;
