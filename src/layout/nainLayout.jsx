@@ -8,15 +8,11 @@ const MainLayout = () => {
   return (
     <>
       <div className="h-screen flex flex-col bg-white text-white">
-        <nav
-          className={`h-[${hightNavBar}] fixed top-0 bg-black left-0 w-full flex items-center justify-center  text-white shadow-md z-50`}
-        >
+        <nav className={`h-[${hightNavBar}] fixed top-0 bg-black left-0 w-full flex items-center justify-center  text-white shadow-md z-50`} >
           <Nav />
         </nav>
         <div className={`flex mt-[${hightNavBar}]`}>
-          <aside
-            className={`w-1/6 bg-gray-200 flex flex-col items-center sticky top-[${hightNavBar}] h-[calc(100vh-${hightNavBar})]`}
-          > 
+          <aside  className={`w-1/6 bg-gray-200 flex flex-col items-center sticky top-[${hightNavBar}] h-[calc(100vh-${hightNavBar})]`} > 
               <SideBar /> 
           </aside>
           <main className="w-5/6 bg-white p-4 text-black">
