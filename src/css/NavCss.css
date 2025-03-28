@@ -2,11 +2,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10%;
-  background-color: #f8f9fa;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 10%; 
   position: sticky;
+  top: 0;
   width: 100%;
   z-index: 1000;
   height: 60px;
+
+ 
+  backdrop-filter: blur(20px); /* Làm mờ nền phía sau */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Đổ bóng nhẹ */
+  transition: background-color 0s ease, box-shadow 0s ease; /* Hiệu ứng mượt */
+} 
+
+
+.main {
+  padding: 20px 10%;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(0, 0, 0, 0.85), black); /* Hiệu ứng nền gradient */
+  color: white;
+}
+
+/* Nếu muốn hiệu ứng mờ đậm hơn */
+.main-blur {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  border-radius: 10px;
 }
