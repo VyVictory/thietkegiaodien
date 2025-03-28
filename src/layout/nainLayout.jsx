@@ -16,10 +16,8 @@ const MainLayout = () => {
         <div className={`flex mt-[${hightNavBar}]`}>
           <aside
             className={`w-1/6 bg-gray-200 flex flex-col items-center sticky top-[${hightNavBar}] h-[calc(100vh-${hightNavBar})]`}
-          >
-            <div className="p-2 w-full h-full bg-black">
-              <SideBar />
-            </div>
+          > 
+              <SideBar /> 
           </aside>
           <main className="w-5/6 bg-white p-4 text-black">
             <Outlet />
