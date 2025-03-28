@@ -21,7 +21,7 @@ const MainLayout = () => {
               <SideBar />
             </div>
           </aside>
-          <main className="w-5/6 bg-gray-400 p-4">
+          <main className="w-5/6 bg-white p-4 text-black">
             <Outlet />
             <div className="h-[3000px]"></div>
           </main>
