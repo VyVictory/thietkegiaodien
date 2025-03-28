@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.body {
-    color: white;
-    background: linear-gradient(to bottom right, rgb(96, 96, 255), black);
-    min-height: 100vh; /* Đảm bảo gradient phủ toàn bộ trang */
+
+.navPadding {
+    padding-top: 60px;
+}
+.navH {
+    height: 60px;
 }
