@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.navPadding {
+    padding-top: 60px;
+}
+.navH {
+    height: 60px;
+}
