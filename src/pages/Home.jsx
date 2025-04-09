@@ -1,6 +1,6 @@
 import React from 'react'
-import PlayBack from './components/music/PlayBack'
-import Singer from './components/single/Singer'
+import Singer from '../components/singer/Singer'
+import PlayBack from '../components/music/PlayBack'
 export default function Home() {
   const keywords = [
     "dễ ngủ",
@@ -11,7 +11,7 @@ export default function Home() {
     "Vui tươi"
   ]
   return (
-    <div className='mx-10 grid gap-10'>
+    <div className='mx-10 grid gap-10 '>
       <div className='Grid'>
         {keywords.map((k) => (
           <div className='bg-[#363D41] rounded-2xl flex justify-center items-center p-1'>{k}</div>
