@@ -1,7 +1,7 @@
 import * as React from "react";
 import NavCss from "../../css/NavCss.css";
 import { PlayArrowSharp } from "@mui/icons-material";
-export default function Nav() { 
+export default function Nav() {
   return (
     <>
       <nav className={`bg-black w-full h-full border-b border-gray-400`}>NAV</nav>{" "}
