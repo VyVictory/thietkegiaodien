@@ -1,21 +1,33 @@
-import * as React from "react";
+import React, { useEffect, useRef } from "react";
 
 export default function Nav() {
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (navRef.current) {
+        if (window.scrollY > 1) {
+          navRef.current.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+        } else {
+          navRef.current.style.backgroundColor = "black";
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup khi component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
-      <nav className={`bg-black w-full h-full border-b border-gray-400`}>
-        NAV
-      </nav>{" "}
-    </>
+    <nav
+      ref={navRef}
+      className="bg-black w-full h-full border-b border-gray-400 transition-colors duration-300"
+    >
+      NAV
+    </nav>
   );
 }
-const scrollCss = () => {
-  window.addEventListener("scroll", function () {
-    let navbar = document.querySelector(".Nav");
-    if (window.scrollY > 10) {
-      navbar.style.backgroundColor = "rgba(0, 0, 0, 0.75)"; // Màu nền trắng mờ
-    } else {
-      navbar.style.backgroundColor = "black"; // Màu nền trắng mờ
-    }
-  });
-};
