@@ -3,7 +3,7 @@ import * as React from "react";
 export default function Nav() {
   return (
     <>
-      <nav className={`bg-black w-full h-full border-b border-gray-400`}>
+      <nav className={`bg-black w-full h-full border-b-[1px] border-[#222222]`}>
         NAV
       </nav>{" "}
     </>
