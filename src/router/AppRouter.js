@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Discover from "../pages/Discover";
 import Libary from "../pages/Libary";
 import PlayList from "../pages/PlayList";
+import Listen from "../pages/Listen";
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
           <Route path="discover" element={<Discover />} />
           <Route path="libary" element={<Libary />} />
           <Route path="playlist" element={<PlayList />} />
+          <Route path="listen/id" element={<Listen />} />
         </Route>
       </Routes>
     </Router>
