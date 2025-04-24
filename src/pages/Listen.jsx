@@ -1,47 +1,25 @@
 import React from 'react'
-import SimpleList from '../components/playlist/SimpleList'
+// import SimpleList from '../components/playlist/SimpleList'
+import TabsList from '../components/TabsList'
 
 export default function Listen() {
+    const [focusTab, setFoucusTab] = React.useState("mp3")
+
     return (
-        <div className='flex h-[calc(100vh-60px)]'>
-            <div>
+        <div className='flex h-screen mt-10 gap-16 px-12 py-6 overflow-hidden'>
+            <div className='flex-shrink-0 w-[52%]'>
+                <div className='my-3 flex justify-center'>
+                    <div className='bg-[#212121] rounded-full flex items-center'>
+                        <button onClick={(e) => setFoucusTab("mp3")} className={`rounded-full ${focusTab === "mp3" ? "bg-[#383838]" : ""} py-2 px-5`}>Bài hát</button>
+                        <button onClick={(e) => setFoucusTab("video")} className={`rounded-full ${focusTab === "video" ? "bg-[#383838]" : ""} py-2 px-5`}>Video</button>
+                    </div>
+                </div>
                 <img src="https://i.ytimg.com/vi/BxhmoqsrAKg/maxresdefault.jpg" alt=""
-                    className='max-w-2xl'
+                    className='w-full object-cover max-h-[500px]'
                 />
             </div>
-            <div className='grid gap-3'>
-                <div className='px-4 my-5 flex justify-between text-center'>
-                    <span className='py-3 px-10 border-b-[1px] hover'>Tiếp theo</span>
-                    <span className='py-3 px-10 border-b-[1px] border-gray-600'>Lời nhạc</span>
-                    <span className='py-3 px-10 border-b-[1px] border-gray-600'>Liên quan</span>
-                </div>
-                <div className='overflow-auto max-h-[100vh] grid gap-3'>
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                    <SimpleList />
-                </div>
-            </div>
+
+            <TabsList />
         </div>
     )
 }

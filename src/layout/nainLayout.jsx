@@ -20,7 +20,7 @@ const MainLayout = () => {
         >
           <SideBar />
         </aside>
-        <main className="bg-[#020202] text-white flex flex-col items-center w-full max-w-7xl mx-auto min-h-screen">
+        <main className="bg-[#020202] text-white flex flex-col items-center w-full max-w-7xl mx-auto">
           <Outlet />
         </main>
       </div>
