@@ -7,6 +7,7 @@ import Discover from "../pages/Discover";
 import Libary from "../pages/Libary";
 import PlayList from "../pages/PlayList";
 import Listen from "../pages/Listen";
+import DetailSinger from "../pages/DetailSinger";
 
 // Component to control body overflow based on route
 const ScrollController = () => {
@@ -41,6 +42,7 @@ const AppRouter = () => {
           <Route path="libary" element={<Libary />} />
           <Route path="playlist" element={<PlayList />} />
           <Route path="listen/:id" element={<Listen />} />
+          <Route path="singer/:id" element={<DetailSinger />} />
         </Route>
       </Routes>
     </Router>
