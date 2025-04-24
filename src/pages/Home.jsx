@@ -12,7 +12,7 @@ export default function Home() {
   ]
   return (
     // <div className='flex'>
-    <div className='mx-10 grid gap-10 '>
+    <div className=' grid gap-10 m-10'>
       <div className='Grid'>
         {keywords.map((k) => (
           <div className='bg-[#363D41] rounded-2xl flex justify-center items-center p-1'>{k}</div>
