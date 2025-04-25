@@ -6,7 +6,7 @@ export default function SimpleSinger() {
         <div className='grid gap-2 '>
             <Link to={`/singer/id`} className='flex flex-col items-center'>
                 <img src="https://th.bing.com/th/id/OIP.-7yXfNE9GcUmKxgMVeOhCgHaHa?rs=1&pid=ImgDetMain" alt=""
-                    className='rounded-full object-cover aspect-square'
+                    className='rounded-full object-cover aspect-square brightness-75'
                 />
             </Link>
             <Link to={`/singer/id`} className='text-nowrap text-center hover:underline'>Datmaniac</Link>

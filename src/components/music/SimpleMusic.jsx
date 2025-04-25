@@ -6,7 +6,7 @@ export default function SimpleMusic() {
         <div className='grid gap-2'>
             <Link to={`/playlist/1`} className='flex flex-col gap-2'>
                 <img src="https://th.bing.com/th/id/OIP.-7yXfNE9GcUmKxgMVeOhCgHaHa?rs=1&pid=ImgDetMain" alt=""
-                    className='rounded-xl h-44 w-full'
+                    className='rounded-xl h-44 w-full brightness-75'
                 />
             </Link>
             <Link to={`/playlist/1`} className='text-nowrap hover:underline'>Tuyển tập nhạc EDM</Link>
