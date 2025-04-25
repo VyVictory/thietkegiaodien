@@ -13,7 +13,7 @@ export default function SideBar() {
   const location = useLocation();
   const isActiveTab = (path) => location.pathname === path;
   return (
-    <div className="p-2 w-full h-full bg-black">
+    <div className="p-2 w-full h-full ">
       <div className="pb-10 border-b-[1px]">
         <Link
           to={"/"}

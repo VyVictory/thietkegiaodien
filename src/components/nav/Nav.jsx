@@ -1,33 +1,36 @@
 import React, { useEffect, useRef } from "react";
 
+import log from "../../assets/logo.png";
+
 export default function Nav() {
   const navRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       if (navRef.current) {
-        if (window.scrollY > 1) {
-          navRef.current.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
-        } else {
+        if (window.scrollY > 0) {
           navRef.current.style.backgroundColor = "black";
+          navRef.current.style.borderColor = "#404040";
+        } else {
+          navRef.current.style.backgroundColor = "rgba(0, 0, 0, 0)";
+          navRef.current.style.borderColor = "transparent";
         }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-    // Cleanup khi component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <nav
+    <div
       ref={navRef}
-      className="bg-black w-full h-full border-b border-gray-400 transition-colors duration-300"
+      className="w-full h-full border-b border-transparent transition-colors duration-300 "
     >
-      NAV
-    </nav>
+    </div>
   );
 }
