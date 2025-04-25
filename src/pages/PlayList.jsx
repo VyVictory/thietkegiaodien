@@ -4,11 +4,11 @@ import LeftPlayList from '../components/playlist/LeftPlayList'
 
 export default function PlayList() {
     return (
-        <div className='flex mt-16'>
+        <div className='flex mt-16 mx-24 '>
             <div className=' fixed top-50'>
                 <LeftPlayList />
             </div>
-            <div className='grid gap-7 ml-[350px]'>
+            <div className='grid gap-6 ml-[400px]'>
                 <SimpleList wid={`min-w-96`} />
                 <SimpleList wid={`min-w-96`} />
                 <SimpleList wid={`min-w-96`} />
