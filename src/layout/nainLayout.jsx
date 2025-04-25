@@ -33,10 +33,9 @@ const MainLayout = () => {
           </aside>
           <main
             style={{
-              top: "0px",
               paddingTop: heightNavBar,
             }}
-            className="w-5/6  p-4 text-white relative"
+            className="w-5/6  p-4 text-white relative max-w-6xl mx-auto"
           >
             {/*
           style={{ top: heightNavBar, height: `calc(100vh - ${heightNavBar})` }}

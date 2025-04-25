@@ -6,7 +6,7 @@ export default function Listen() {
     const [focusTab, setFoucusTab] = React.useState("mp3")
 
     return (
-        <div className='flex h-screen mt-10 gap-16 px-12 py-6 overflow-hidden'>
+        <div className='flex h-screen mt-10 gap-14 px-2 py-3 overflow-hidden'>
             <div className='flex-shrink-0 w-[52%]'>
                 <div className='my-3 flex justify-center'>
                     <div className='bg-[#212121] rounded-full flex items-center'>

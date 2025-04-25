@@ -39,15 +39,6 @@ const TabsList = () => {
                             <SimpleList />
                             <SimpleList />
                             <SimpleList />
-                            <SimpleList />
-                            <SimpleList />
-                            <SimpleList />
-                            <SimpleList />
-                            <SimpleList />
-                            <SimpleList />
-                            <SimpleList />
-                            <SimpleList />
-                            <SimpleList />
 
                         </div>
                     </div>

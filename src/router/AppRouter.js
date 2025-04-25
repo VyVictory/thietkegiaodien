@@ -40,7 +40,7 @@ const AppRouter = () => {
           {/* Add more routes if needed */}
           <Route path="discover" element={<Discover />} />
           <Route path="libary" element={<Libary />} />
-          <Route path="playlist" element={<PlayList />} />
+          <Route path="playlist/:id" element={<PlayList />} />
           <Route path="listen/:id" element={<Listen />} />
           <Route path="singer/:id" element={<DetailSinger />} />
         </Route>

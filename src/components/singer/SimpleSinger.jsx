@@ -5,7 +5,7 @@ export default function SimpleSinger() {
     return (
         <div className='grid gap-2 '>
             <Link to={`/singer/id`} className='flex flex-col items-center'>
-                <img src="https://th.bing.com/th/id/R.1f944c2571edeea4daae61df34a6f033?rik=TTjaOPoYAwL%2fHw&riu=http%3a%2f%2fwww.dafont.com%2fforum%2fattach%2forig%2f5%2f0%2f507496.png%3f1&ehk=cBfFhHOrc4GCk%2bQBSTpD3xgbTY1DdbXkRzGLsIU51zY%3d&risl=&pid=ImgRaw&r=0" alt=""
+                <img src="https://th.bing.com/th/id/OIP.-7yXfNE9GcUmKxgMVeOhCgHaHa?rs=1&pid=ImgDetMain" alt=""
                     className='rounded-full object-cover aspect-square'
                 />
             </Link>
