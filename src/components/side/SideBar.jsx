@@ -37,10 +37,10 @@ export default function SideBar() {
           <span>Thư viện</span>
         </Link>
       </div>
-      <div className="mt-3 grid gap-5">
+      <div className="mt-3 grid gap-5 text-nowrap">
         <div className="p-2 flex items-center justify-center gap-2 rounded-3xl bg-[#1D1D1D]">
           <CreateNewFolder />
-          <span>Danh sách phát mới</span>
+          <span >Danh sách phát mới</span>
         </div>
         <div className="p-4 flex items-center gap-2 rounded-md  ">
           <ThumbUpAlt />

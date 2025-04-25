@@ -11,7 +11,8 @@ export default function Home() {
     "Vui tươi"
   ]
   return (
-    <div className='mx-10 grid gap-10 '>
+    // <div className='flex'>
+    <div className=' grid gap-10 m-10'>
       <div className='Grid'>
         {keywords.map((k) => (
           <div className='bg-[#363D41] rounded-2xl flex justify-center items-center p-1'>{k}</div>
@@ -22,5 +23,6 @@ export default function Home() {
       <PlayBack title={"Nhạc mới phát hành"} />
       <PlayBack title={"Nhạc Trendding"} />
     </div>
+    // </div>
   )
 }

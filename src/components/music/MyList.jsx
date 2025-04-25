@@ -1,9 +1,10 @@
 import React from 'react'
 import SimpleMusic from './SimpleMusic'
 import Like from '../../assets/like.png'
+import { Link } from 'react-router-dom'
 export default function MyList() {
     return (
-        <div className='Grid'>
+        <Link to={'/playlist'} className='Grid'>
             <div className='grid gap-2'>
                 <img src={Like} alt=""
                     className='rounded-xl w-full h-44'
@@ -16,6 +17,6 @@ export default function MyList() {
             <SimpleMusic />
             <SimpleMusic />
             <SimpleMusic />
-        </div>
+        </Link>
     )
 }

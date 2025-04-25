@@ -18,6 +18,7 @@ const MainLayout = () => {
       </nav>
       <div className="flex">
         <aside
+          //
           style={{
             top: "0px",
             paddingTop: heightNavBar,
@@ -34,8 +35,14 @@ const MainLayout = () => {
           }}
           className="w-5/6  p-4 text-white relative"
         >
+          {/*
+          style={{ top: heightNavBar, height: `calc(100vh - ${heightNavBar})` }}
+          className="  flex flex-col items-center sticky border-r-[1px] border-[#222222]"
+        >
+          <SideBar />
+        </aside>
+        <main className="bg-[#020202] text-white flex flex-col items-center w-full max-w-7xl mx-auto"> */}
           <Outlet />
-          <div className="h-[3000px]"></div>
         </main>
       </div>
     </div>
