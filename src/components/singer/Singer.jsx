@@ -7,10 +7,10 @@ export default function Singer({ title }) {
             <div className='flex items-center justify-between mb-8'>
                 <h1 className='font-semibold text-2xl'>{title}</h1>
                 <div className='flex gap-5 items-center'>
-                    <div className='p-1 border-2 rounded-3xl'>Xem tất cả</div>
+                    <button className='p-1 border-2 rounded-3xl hover:bg-gray-800'>Xem tất cả</button>
                     <div className='flex gap-3'>
-                        <ArrowBackIosNew sx={{ fontSize: 30 }} className='border-2 rounded-full p-1' />
-                        <ArrowForwardIos sx={{ fontSize: 30 }} className='border-2 rounded-full p-1' />
+                        <ArrowBackIosNew sx={{ fontSize: 30 }} className='border-2 rounded-full p-1 hover:bg-gray-800 cursor-pointer' />
+                        <ArrowForwardIos sx={{ fontSize: 30 }} className='border-2 rounded-full p-1 hover:bg-gray-800 cursor-pointer' />
                     </div>
                 </div>
             </div>

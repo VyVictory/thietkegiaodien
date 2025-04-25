@@ -4,7 +4,7 @@ import Like from '../../assets/like.png'
 import { Link } from 'react-router-dom'
 export default function MyList() {
     return (
-        <Link to={'/playlist'} className='Grid'>
+        <Link to={'/playlist/1'} className='Grid'>
             <div className='grid gap-2'>
                 <img src={Like} alt=""
                     className='rounded-xl w-full h-44'
