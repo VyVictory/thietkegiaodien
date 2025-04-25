@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { LayoutProvider } from "./LayoutProvider";
 
 // 1. Tạo Context
 export const AppContext = createContext();
@@ -14,7 +15,7 @@ const AppProvider = ({ children }) => {
   const [login, setLoginModel] = useState(true);
   return (
     <AppContext.Provider value={{ theme, toggleTheme }}>
-      {children}
+      <LayoutProvider>{children}</LayoutProvider>
     </AppContext.Provider>
   );
 };

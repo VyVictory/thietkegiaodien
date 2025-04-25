@@ -31,7 +31,7 @@ export default function SideBar() {
         </Link>
         <Link
           to={"libary"}
-          className={` p-4 flex items-center gap-5 rounded-md ${isActiveTab("/libary") ? "bg-[#1D1D1D]" : "hover:bg-[#353535]"}`}
+          className={` p-4 hMouse flex items-center gap-5 rounded-md ${isActiveTab("/libary") ? "bg-[#1D1D1D]" : "hover:bg-[#353535]"}`}
         >
           <Subscriptions />
           <span>Thư viện</span>
