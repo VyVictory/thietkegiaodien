@@ -8,6 +8,13 @@ import Libary from "../pages/Libary";
 import PlayList from "../pages/PlayList";
 import Listen from "../pages/Listen";
 import DetailSinger from "../pages/DetailSinger";
+import LayoutAdmin from "../pages/admin/LayoutAdmin";
+import Dashboard from "../pages/admin/Dashboard";
+import SongManager from "../pages/admin/SongManager";
+import AlbumManager from "../pages/admin/AlbumManager";
+import ArtistManager from "../pages/admin/ArtistManager";
+import CategoryManager from "../pages/admin/CategoryManager";
+
 
 // Component to control body overflow based on route
 const ScrollController = () => {
@@ -43,6 +50,15 @@ const AppRouter = () => {
           <Route path="playlist/:id" element={<PlayList />} />
           <Route path="listen/:id" element={<Listen />} />
           <Route path="singer/:id" element={<DetailSinger />} />
+        </Route>
+        <Route path="/admin" element={<LayoutAdmin />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="songmanager" element={<SongManager />} />
+          <Route path="albummanager" element={<AlbumManager />} />
+          <Route path="artistmanager" element={<ArtistManager />} />
+          <Route path="categorymanager" element={<CategoryManager />} />
+          {/* Add more routes if needed */}
         </Route>
       </Routes>
     </Router>
