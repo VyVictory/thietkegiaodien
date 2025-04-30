@@ -5,12 +5,13 @@ import SideBar from "../components/side/SideBar";
 import { BgOverLay } from "./bgOverlay";
 import { OutSite } from "./OutSite";
 import { ViewList } from "@mui/icons-material";
+import { useLayout } from "../context/LayoutProvider";
 
 const MainLayout = () => {
   const NAVBAR_HEIGHT = "60px";
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
-
+  const { isPlay, modal } = useLayout();
   // Đóng sidebar khi click bên ngoài
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -82,6 +83,7 @@ const MainLayout = () => {
             className="flex-1 p-4 relative max-w-6xl mx-auto overflow-y-auto"
           >
             <Outlet />
+            {isPlay && <div className="h-20"></div>}
           </main>
         </div>
       </div>
