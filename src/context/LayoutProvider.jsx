@@ -1,15 +1,19 @@
+// src/context/LayoutProvider.jsx
 import React, { createContext, useContext, useState } from "react";
 
-// 1. Tạo Context
 const LayoutContext = createContext();
 
-// 2. Tạo Provider
+/**
+ * @typedef {"SettingsModal" | "PlayModal" | "LoginModal" | "FooModal"} ModalName
+ * @type {React.FC}
+ */
 export const LayoutProvider = ({ children }) => {
+  /** @type {[ModalName, React.Dispatch<React.SetStateAction<ModalName>>]} */
+  const [modal, setModal] = useState(null);
   const [isPlay, setIsPlay] = useState(true);
   return (
-    <LayoutContext.Provider value={{ isPlay, setIsPlay }}>
+    <LayoutContext.Provider value={{ isPlay, setIsPlay, modal, setModal }}>
       {children}
-      
     </LayoutContext.Provider>
   );
 };
