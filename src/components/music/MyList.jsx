@@ -17,6 +17,18 @@ export default function MyList() {
             <SimpleMusic />
             <SimpleMusic />
             <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
+            <SimpleMusic />
         </Link>
     )
 }

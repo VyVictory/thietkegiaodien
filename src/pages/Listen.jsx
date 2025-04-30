@@ -4,7 +4,9 @@ import TabsList from '../components/TabsList'
 
 export default function Listen() {
     const [focusTab, setFoucusTab] = React.useState("mp3")
-
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div className='flex h-screen mt-10 gap-14 px-2 py-3 overflow-hidden'>
             <div className='flex-shrink-0 w-[52%]'>

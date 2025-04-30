@@ -10,6 +10,9 @@ export default function Home() {
     "Lãng mạn",
     "Vui tươi"
   ]
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     // <div className='flex'>
     <div className=' grid gap-10 m-10'>

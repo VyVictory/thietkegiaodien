@@ -1,11 +1,15 @@
 import { Play, Shuffle } from "lucide-react"
 import PlayBack from "../components/music/PlayBack"
 import { useState } from "react"
+import React from "react"
 export default function DetailSinger() {
     const [subscribe, setSubscribe] = useState(false)
     const handleSubscribe = () => {
         setSubscribe(!subscribe)
     }
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     console.log(subscribe)
     return (
         <div className=" bg-[#020202] text-white w-full">

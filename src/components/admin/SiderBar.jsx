@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard, Music, FolderTree, Album, User } from "lucide-react"
+import { Dashboard, LibraryMusic, Mic, Category, Album } from '@mui/icons-material'
 export default function SiderBar() {
     return (
         <div className="w-[224px] border-r border-zinc-800 flex flex-col">
@@ -9,12 +9,12 @@ export default function SiderBar() {
 
             <nav className="flex flex-col py-4">
                 <a href="/admin" className="flex items-center gap-3 px-6 py-3 text-white hover:bg-zinc-900">
-                    <LayoutDashboard size={20} className="text-white" />
+                    <Dashboard size={20} className="text-white" />
                     <span>Dashboard</span>
                 </a>
 
                 <a href="/admin/songmanager" className="flex items-center gap-3 px-6 py-3 text-white hover:bg-zinc-900">
-                    <Music size={20} className="text-white" />
+                    <LibraryMusic size={20} className="text-white" />
                     <span>Quản lý nhạc</span>
                 </a>
 
@@ -24,12 +24,12 @@ export default function SiderBar() {
                 </a>
 
                 <a href="/admin/artistmanager" className="flex items-center gap-3 px-6 py-3 text-white hover:bg-zinc-900">
-                    <User size={20} className="text-white" />
+                    <Mic size={20} className="text-white" />
                     <span>Quản lý nghệ sĩ</span>
                 </a>
 
                 <a href="/admin/categorymanager" className="flex items-center gap-3 px-6 py-3 text-white hover:bg-zinc-900">
-                    <FolderTree size={20} className="text-white" />
+                    <Category size={20} className="text-white" />
                     <span>Thể loại</span>
                 </a>
             </nav>
