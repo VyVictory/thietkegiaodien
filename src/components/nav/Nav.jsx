@@ -23,7 +23,7 @@ export default function Nav() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 w-full h-[60px] flex items-center justify-between px-4 border-b border-transparent z-50 transition-colors duration-300 bg-transparent"
+      className="fixed top-0 left-0 w-full h-[60px] flex items-center justify-between pr-4 border-b border-transparent z-50 transition-colors duration-300 bg-transparent"
     >
       <div className="flex-shrink-0 flex flex-row items-center gap-2 text-blue-400 font-bold text-xl">
         <img src={log} alt="Logo" className="h-16 object-contain" />
