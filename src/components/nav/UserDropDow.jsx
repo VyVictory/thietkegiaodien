@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   Divider,
   Typography,
+  Button,
 } from "@mui/material";
 import {
   AccountCircle,
@@ -22,10 +23,11 @@ import {
 } from "@mui/icons-material";
 import { useLayout } from "../../context/LayoutProvider";
 import png300 from "../../assets/300.png";
+import authToken from "../storage/authToken";
 export const UserDropDow = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const { setModal } = useLayout();
+  const { setModal, isLogin, setIsLogin } = useLayout();
   const handleAvatarClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
@@ -36,13 +38,24 @@ export const UserDropDow = () => {
   return (
     <>
       <div className="flex items-center gap-4">
-        <IconButton onClick={handleAvatarClick}>
-          <Avatar
-            alt="Victory"
-            src={png300 || "https://i.pravatar.cc/300"}
-            className="w-8 h-8 hover:scale-110 transition-transform"
-          />
-        </IconButton>
+        {isLogin ? (
+          <IconButton onClick={handleAvatarClick}>
+            <Avatar
+              alt="Victory"
+              src={png300 || "https://i.pravatar.cc/300"}
+              className="w-8 h-8 hover:scale-110 transition-transform"
+            />
+          </IconButton>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setModal("Login")}
+            className="text-white hover:bg-blue-600"
+          >
+            Login
+          </Button>
+        )}
         <Menu
           anchorEl={anchorEl}
           open={open}
@@ -90,7 +103,11 @@ export const UserDropDow = () => {
             </ListItemIcon>
             Chuyển đổi tài khoản
           </MenuItem>
-          <MenuItem onClick={handleClose}>
+          <MenuItem
+            onClick={() => (
+              authToken.deleteToken(), setIsLogin(false), handleClose()
+            )}
+          >
             <ListItemIcon>
               <Logout fontSize="small" htmlColor="#ccc" />
             </ListItemIcon>
