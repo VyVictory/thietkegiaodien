@@ -1,16 +1,50 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Fr from "../../assets/Fr.png";
 export default function SimpleMusic() {
-    return (
-        <div className='grid gap-2'>
-            <Link to={`/playlist/1`} className='flex flex-col gap-2'>
-                <img src="https://th.bing.com/th/id/OIP.-7yXfNE9GcUmKxgMVeOhCgHaHa?rs=1&pid=ImgDetMain" alt=""
-                    className='rounded-xl h-44 w-full brightness-75'
-                />
-            </Link>
-            <Link to={`/playlist/1`} className='text-nowrap hover:underline'>Tuyển tập nhạc EDM</Link>
-            <Link to={`/singer/1`} className='text-[#B4B4B4] text-sm hover:underline'>Martin Garrix</Link>
-        </div>
-    )
+  const [track, setTrack] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://itunes.apple.com/search?term=edm&media=music&limit=20")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.results?.length) {
+          const randomIndex = Math.floor(Math.random() * data.results.length);
+          setTrack(data.results[randomIndex]);
+        }
+      })
+      .catch((err) => console.error("Fetch iTunes failed", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (!track) return <div>Không tìm thấy bài nhạc.</div>;
+
+  const { artworkUrl100, collectionId, trackName, artistName } = track;
+  const imgUrl = artworkUrl100.replace("100x100bb", "300x300bb");
+
+  return (
+    <div className="grid gap-2">
+      <Link to={`/playlist/${collectionId}`} className="flex flex-col gap-2">
+        <img
+          src={imgUrl || Fr}
+          alt={trackName}
+          className="rounded-md h-44 w-full object-cover"
+        />
+      </Link>
+      <Link
+        to={`/playlist/${collectionId || "0"}`}
+        className="truncate hover:underline text-white font-medium"
+      >
+        {trackName || " Tuyển tập nhạc EDM"}
+      </Link>
+      <Link
+        to={`/singer/${encodeURIComponent(artistName) || "Martin Garrix"}`}
+        className="text-[#B4B4B4] text-sm truncate hover:underline"
+      >
+        {artistName || "Martin Garrix"}
+      </Link>
+    </div>
+  );
 }
