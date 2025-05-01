@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import MainLayout from "../layout/nainLayout";
 import Home from "../pages/Home";
-import Discover from "../pages/Discover";
+import Discover from "../pages/discover/Discover";
 import Libary from "../pages/Libary";
 import PlayList from "../pages/PlayList";
 import Listen from "../pages/Listen";

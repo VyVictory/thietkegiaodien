@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Fr from "../../assets/Fr.png";
+
 export default function SimpleMusic() {
   const [track, setTrack] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://itunes.apple.com/search?term=edm&media=music&limit=20")
+    fetch("https://itunes.apple.com/search?term=edm&media=music&limit=1001")
       .then((res) => res.json())
       .then((data) => {
         if (data.results?.length) {
@@ -18,32 +19,32 @@ export default function SimpleMusic() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (!track) return <div>Không tìm thấy bài nhạc.</div>;
+  if (loading) return <div className="text-white text-sm">Đang tải...</div>;
+  if (!track) return <div className="text-white text-sm">Không tìm thấy bài nhạc.</div>;
 
   const { artworkUrl100, collectionId, trackName, artistName } = track;
   const imgUrl = artworkUrl100.replace("100x100bb", "300x300bb");
 
   return (
-    <div className="grid gap-2">
-      <Link to={`/playlist/${collectionId}`} className="flex flex-col gap-2">
+    <div className="w-[180px] flex-shrink-0">
+      <Link to={`/playlist/${collectionId}`} className="block mb-2">
         <img
           src={imgUrl || Fr}
           alt={trackName}
-          className="rounded-md h-44 w-full object-cover"
+          className="rounded-md w-full h-[180px] object-cover"
         />
       </Link>
       <Link
         to={`/playlist/${collectionId || "0"}`}
-        className="truncate hover:underline text-white font-medium"
+        className="truncate hover:underline text-white font-semibold block"
       >
-        {trackName || " Tuyển tập nhạc EDM"}
+        {trackName || "Tuyển tập nhạc EDM"}
       </Link>
       <Link
         to={`/singer/${encodeURIComponent(artistName) || "Martin Garrix"}`}
-        className="text-[#B4B4B4] text-sm truncate hover:underline"
+        className="text-[#B4B4B4] text-sm truncate hover:underline block"
       >
-        {artistName || "Martin Garrix"}
+        Đĩa đơn • {artistName || "Martin Garrix"}
       </Link>
     </div>
   );
