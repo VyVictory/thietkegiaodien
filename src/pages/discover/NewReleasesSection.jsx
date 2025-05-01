@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SimpleMusic from "../../components/music/SimpleMusic";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 
-export default function NewReleasesSection({ items, title }) {
+export default function NewReleasesSection({ items, title, isVideo }) {
   const scrollRef = useRef(null);
   const scrollOffset = 500;
   const itemsPerScroll = 4; // Cuộn 4 item mỗi lần
@@ -60,17 +60,37 @@ export default function NewReleasesSection({ items, title }) {
           ref={scrollRef}
           className="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
         >
-          {items.map((it) => (
-            <div key={it.id} className="min-w-[150px] flex-shrink-0">
-              <SimpleMusic
-                imageSrc={it.imageSrc}
-                title={it.title}
-                artistName={it.artistName}
-                playlistId={it.playlistId}
-                artistId={it.artistId}
-              />
-            </div>
-          ))}
+          {!isVideo &&
+            items.map((it) => (
+              // isVideo ? (
+              <div key={it.id} className="min-w-[150px] flex-shrink-0">
+                <SimpleMusic
+                  imageSrc={it.imageSrc}
+                  title={it.title}
+                  artistName={it.artistName}
+                  playlistId={it.playlistId}
+                  artistId={it.artistId}
+                />
+              </div>
+            ))}
+          {isVideo &&
+            items.map((it) => (
+              <Link
+                key={it.id}
+                to={`/video/${it.id}`}
+                className="min-w-[200px] flex-shrink-0"
+              >
+                <img
+                  src={it.img}
+                  alt={it.title}
+                  className="rounded-md w-full h-32 object-cover"
+                />
+                <p className="text-white mt-2 truncate">{it.title}</p>
+                <p className="text-gray-400 text-sm truncate">
+                  {it.artist} • {it.views} lượt xem
+                </p>
+              </Link>
+            ))}
         </div>
       </div>
     </section>

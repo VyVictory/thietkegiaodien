@@ -1,60 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NewReleasesSection from "./NewReleasesSection";
+import mockVideos from "../../json/mockVideos.json"; // Import mock videos
 
 export default function Discover() {
   const [newReleases, setNewReleases] = useState([]);
+  const [moods, setMoods] = useState([]);
+  const [newVideos, setNewVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const moods = [
-    "Vui vẻ",
-    "Buồn",
-    "Yêu đời",
-    "EDM",
-    "Hip-Hop",
-    "Lofi",
-    "K-pop",
-    "Ballad",
-    "Rock",
-    "Dance",
-    "Acoustic",
-    "Chill",
-  ];
-
-  const newVideos = [
-    {
-      id: "vid1",
-      img: "https://i.ytimg.com/vi/IcrbM1l_BoI/hqdefault.jpg",
-      title: "Waiting For Love",
-      artist: "Avicii",
-      views: "125 triệu",
-    },
-    {
-      id: "vid2",
-      img: "https://i.ytimg.com/vi/6Mgqbai3fKo/hqdefault.jpg",
-      title: "Scared to Be Lonely",
-      artist: "Martin Garrix",
-      views: "90 triệu",
-    },
-    {
-      id: "vid3",
-      img: "https://i.ytimg.com/vi/IxxstCcJlsc/hqdefault.jpg",
-      title: "Clarity",
-      artist: "Zedd",
-      views: "210 triệu",
-    },
-  ];
-
   useEffect(() => {
-    async function fetchData() {
+    async function fetchDiscoverData() {
+      setLoading(true);
       try {
-        const response = await fetch(
-          "https://itunes.apple.com/search?term=edm&media=music&limit=1001"
+        // 1. Fetch new releases (iTunes)
+        const musicRes = await fetch(
+          "https://itunes.apple.com/search?term=edm&media=music&limit=60"
         );
-        const data = await response.json();
-
-        // Lấy 6 item đầu tiên làm demo
-        const items = data.results.slice(0, 60).map((item, index) => ({
+        const musicData = await musicRes.json();
+        const releases = musicData.results.slice(0, 60).map((item, index) => ({
           id: item.trackId || index,
           imageSrc: item.artworkUrl100.replace("100x100", "400x400"),
           title: item.trackName,
@@ -62,16 +26,29 @@ export default function Discover() {
           playlistId: item.collectionId || `playlist-${index}`,
           artistId: item.artistId || `artist-${index}`,
         }));
+        setNewReleases(releases);
 
-        setNewReleases(items);
+        // 2. Fetch moods (Last.fm top tags)
+        const genreRes = await fetch(
+          "https://ws.audioscrobbler.com/2.0/?method=tag.getTopTags&api_key=a8cdfc8f1ea7b05842cc73c59f1a7644&format=json"
+        );
+        const genreData = await genreRes.json();
+        const tags = genreData.toptags.tag
+          .slice(0, 24) // giới hạn số lượng
+          .map((tag) => tag.name)
+          .filter((tag) => tag.length < 20); // loại bỏ tag quá dài
+        setMoods(tags);
+
+        // 3. Mock videos (imported from mockVideos.json)
+        setNewVideos(mockVideos);
       } catch (error) {
-        console.error("Error fetching new releases:", error);
+        console.error("Error loading discover data:", error);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchData();
+    fetchDiscoverData();
   }, []);
 
   return (
@@ -87,14 +64,17 @@ export default function Discover() {
         <button className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
           Tâm trạng và thể loại
         </button>
-      </div> 
+      </div>
+
+      {/* New Releases */}
       <section>
         {loading ? (
           <p className="text-white">Đang tải dữ liệu...</p>
         ) : (
           <NewReleasesSection
+            isVideo={false}
             items={newReleases}
-            title={"Đĩa đơn và đĩa nhạc mới"}
+            title="Đĩa đơn và đĩa nhạc mới"
           />
         )}
       </section>
@@ -118,28 +98,15 @@ export default function Discover() {
 
       {/* New Videos */}
       <section>
-        <h2 className="text-white text-xl font-semibold mb-4">
-          Video nhạc mới
-        </h2>
-        <div className="flex space-x-4 overflow-x-auto pb-2">
-          {newVideos.map((v) => (
-            <Link
-              key={v.id}
-              to={`/video/${v.id}`}
-              className="min-w-[200px] flex-shrink-0"
-            >
-              <img
-                src={v.img}
-                alt={v.title}
-                className="rounded-md w-full h-32 object-cover"
-              />
-              <p className="text-white mt-2 truncate">{v.title}</p>
-              <p className="text-gray-400 text-sm truncate">
-                {v.artist} • {v.views} lượt xem
-              </p>
-            </Link>
-          ))}
-        </div>
+        {loading ? (
+          <p className="text-white">Đang tải dữ liệu...</p>
+        ) : (
+          <NewReleasesSection
+            items={newVideos}
+            isVideo={true}
+            title=" Video nhạc mới"
+          />
+        )}
       </section>
     </div>
   );

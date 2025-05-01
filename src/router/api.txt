@@ -1,0 +1,5 @@
+//https://www.last.fm/api/account/create
+// Application name	Next To Music
+// API key	a8cdfc8f1ea7b05842cc73c59f1a7644
+// Shared secret	c1f84a8b72c402815a558e7c8d614589
+// Registered to	lephuc0167283

@@ -1,0 +1,345 @@
+[
+  {
+    "id": "abcdefg123",
+    "img": "https://i.ytimg.com/vi/abcdefg123/hqdefault.jpg",
+    "title": "Exciting New Track 1",
+    "artist": "Rising Star",
+    "views": "100K"
+  },
+  {
+    "id": "hijklmnop456",
+    "img": "https://i.ytimg.com/vi/hijklmnop456/hqdefault.jpg",
+    "title": "Melodic Journey",
+    "artist": "Indie Artist",
+    "views": "250K"
+  },
+  {
+    "id": "qrstuvw789",
+    "img": "https://i.ytimg.com/vi/qrstuvw789/hqdefault.jpg",
+    "title": "Energetic Beats",
+    "artist": "DJ Velocity",
+    "views": "500K"
+  },
+  {
+    "id": "xyz0123abc",
+    "img": "https://i.ytimg.com/vi/xyz0123abc/hqdefault.jpg",
+    "title": "Chill Vibes Only",
+    "artist": "Lo-fi Luminary",
+    "views": "1M"
+  },
+  {
+    "id": "def456ghi78",
+    "img": "https://i.ytimg.com/vi/def456ghi78/hqdefault.jpg",
+    "title": "Powerful Anthem",
+    "artist": "The Titans",
+    "views": "750K"
+  },
+  {
+    "id": "jkl901mno23",
+    "img": "https://i.ytimg.com/vi/jkl901mno23/hqdefault.jpg",
+    "title": "Smooth Grooves",
+    "artist": "Silky Sounds",
+    "views": "300K"
+  },
+  {
+    "id": "pqr345stu67",
+    "img": "https://i.ytimg.com/vi/pqr345stu67/hqdefault.jpg",
+    "title": "Uplifting Melody",
+    "artist": "Harmony Makers",
+    "views": "600K"
+  },
+  {
+    "id": "vwx890yza12",
+    "img": "https://i.ytimg.com/vi/vwx890yza12/hqdefault.jpg",
+    "title": "Hypnotic Rhythm",
+    "artist": "Rhythmic Flow",
+    "views": "400K"
+  },
+  {
+    "id": "bcd567efa89",
+    "img": "https://i.ytimg.com/vi/bcd567efa89/hqdefault.jpg",
+    "title": "Driving Bassline",
+    "artist": "Bass Blaster",
+    "views": "900K"
+  },
+  {
+    "id": "fgh234ijk56",
+    "img": "https://i.ytimg.com/vi/fgh234ijk56/hqdefault.jpg",
+    "title": "Dreamy Sounds",
+    "artist": "Ethereal Echoes",
+    "views": "200K"
+  },
+  {
+    "id": "lmn789opq01",
+    "img": "https://i.ytimg.com/vi/lmn789opq01/hqdefault.jpg",
+    "title": "Catchy Chorus",
+    "artist": "The Hooks",
+    "views": "800K"
+  },
+  {
+    "id": "rst123uvw45",
+    "img": "https://i.ytimg.com/vi/rst123uvw45/hqdefault.jpg",
+    "title": "Intense Drop",
+    "artist": "Drop Zone",
+    "views": "1.2M"
+  },
+  {
+    "id": "yza678bcd90",
+    "img": "https://i.ytimg.com/vi/yza678bcd90/hqdefault.jpg",
+    "title": "Soaring Vocals",
+    "artist": "Vocal Powerhouse",
+    "views": "550K"
+  },
+  {
+    "id": "efg345hij67",
+    "img": "https://i.ytimg.com/vi/efg345hij67/hqdefault.jpg",
+    "title": "Ambient Textures",
+    "artist": "Sound Scapes",
+    "views": "150K"
+  },
+  {
+    "id": "klm890nop12",
+    "img": "https://i.ytimg.com/vi/klm890nop12/hqdefault.jpg",
+    "title": "Funky Rhythms",
+    "artist": "The Groovers",
+    "views": "700K"
+  },
+  {
+    "id": "qrs456tuv78",
+    "img": "https://i.ytimg.com/vi/qrs456tuv78/hqdefault.jpg",
+    "title": "Epic Orchestration",
+    "artist": "Symphonic Sounds",
+    "views": "350K"
+  },
+  {
+    "id": "wxy012zab34",
+    "img": "https://i.ytimg.com/vi/wxy012zab34/hqdefault.jpg",
+    "title": "Mellow Beats",
+    "artist": "Lazy Daze",
+    "views": "220K"
+  },
+  {
+    "id": "cde789fgh01",
+    "img": "https://i.ytimg.com/vi/cde789fgh01/hqdefault.jpg",
+    "title": "Progressive House",
+    "artist": "The Architects",
+    "views": "950K"
+  },
+  {
+    "id": "ijk456lmn23",
+    "img": "https://i.ytimg.com/vi/ijk456lmn23/hqdefault.jpg",
+    "title": "Soulful Ballad",
+    "artist": "Heartfelt Harmony",
+    "views": "450K"
+  },
+  {
+    "id": "opq901rst45",
+    "img": "https://i.ytimg.com/vi/opq901rst45/hqdefault.jpg",
+    "title": "Electro Swing",
+    "artist": "Swing Shift",
+    "views": "650K"
+  },
+  {
+    "id": "uvw234xyz67",
+    "img": "https://i.ytimg.com/vi/uvw234xyz67/hqdefault.jpg",
+    "title": "Tropical House Vibes",
+    "artist": "Island Beats",
+    "views": "320K"
+  },
+  {
+    "id": "zab567cde89",
+    "img": "https://i.ytimg.com/vi/zab567cde89/hqdefault.jpg",
+    "title": "Future Bass Anthem",
+    "artist": "Bass Frontier",
+    "views": "1.1M"
+  },
+  {
+    "id": "fgh012ijk34",
+    "img": "https://i.ytimg.com/vi/fgh012ijk34/hqdefault.jpg",
+    "title": "Deep House Grooves",
+    "artist": "Subtle Sounds",
+    "views": "280K"
+  },
+  {
+    "id": "lmn567opq89",
+    "img": "https://i.ytimg.com/vi/lmn567opq89/hqdefault.jpg",
+    "title": "Indie Pop Delight",
+    "artist": "The Wanderers",
+    "views": "580K"
+  },
+  {
+    "id": "rst012uvw34",
+    "img": "https://i.ytimg.com/vi/rst012uvw34/hqdefault.jpg",
+    "title": "Tech House Energy",
+    "artist": "Circuit Breaker",
+    "views": "720K"
+  },
+  {
+    "id": "yza345bcd67",
+    "img": "https://i.ytimg.com/vi/yza345bcd67/hqdefault.jpg",
+    "title": "Acoustic Serenity",
+    "artist": "Quiet Notes",
+    "views": "180K"
+  },
+  {
+    "id": "efg890hij12",
+    "img": "https://i.ytimg.com/vi/efg890hij12/hqdefault.jpg",
+    "title": "Synthwave Nostalgia",
+    "artist": "Retro Rider",
+    "views": "420K"
+  },
+  {
+    "id": "klm234nop56",
+    "img": "https://i.ytimg.com/vi/klm234nop56/hqdefault.jpg",
+    "title": "Reggae Rhythms",
+    "artist": "Island Vibrations",
+    "views": "680K"
+  },
+  {
+    "id": "qrs789tuv01",
+    "img": "https://i.ytimg.com/vi/qrs789tuv01/hqdefault.jpg",
+    "title": "Hardstyle Power",
+    "artist": "The Renegades",
+    "views": "850K"
+  },
+  {
+    "id": "wxy456yza78",
+    "img": "https://i.ytimg.com/vi/wxy456yza78/hqdefault.jpg",
+    "title": "Minimal Techno",
+    "artist": "Less Is More",
+    "views": "260K"
+  },
+  {
+    "id": "bcd012efa34",
+    "img": "https://i.ytimg.com/vi/bcd012efa34/hqdefault.jpg",
+    "title": "Trance Inducer",
+    "artist": "Astral Projection",
+    "views": "920K"
+  },
+  {
+    "id": "fgh567ijk89",
+    "img": "https://i.ytimg.com/vi/fgh567ijk89/hqdefault.jpg",
+    "title": "Drum and Bass Fury",
+    "artist": "Rhythm Riot",
+    "views": "1.3M"
+  },
+  {
+    "id": "lmn345opq67",
+    "img": "https://i.ytimg.com/vi/lmn345opq67/hqdefault.jpg",
+    "title": "Latin Pop Sensation",
+    "artist": "Fiesta Sounds",
+    "views": "780K"
+  },
+  {
+    "id": "rst890uvw12",
+    "img": "https://i.ytimg.com/vi/rst890uvw12/hqdefault.jpg",
+    "title": "Country Roads Anthem",
+    "artist": "Dusty Trails",
+    "views": "380K"
+  },
+  {
+    "id": "yza123bcd45",
+    "img": "https://i.ytimg.com/vi/yza123bcd45/hqdefault.jpg",
+    "title": "Bluesy Vibes",
+    "artist": "Midnight Howlers",
+    "views": "210K"
+  },
+  {
+    "id": "efg678hij90",
+    "img": "https://i.ytimg.com/vi/efg678hij90/hqdefault.jpg",
+    "title": "Classical Masterpiece",
+    "artist": "The Virtuosos",
+    "views": "480K"
+  },
+  {
+    "id": "klm012nop34",
+    "img": "https://i.ytimg.com/vi/klm012nop34/hqdefault.jpg",
+    "title": "Jazz Fusion Experiment",
+    "artist": "Sonic Explorers",
+    "views": "520K"
+  },
+  {
+    "id": "qrs567tuv89",
+    "img": "https://i.ytimg.com/vi/qrs567tuv89/hqdefault.jpg",
+    "title": "Folk Tale Song",
+    "artist": "The Storytellers",
+    "views": "190K"
+  },
+  {
+    "id": "wxy234yza56",
+    "img": "https://i.ytimg.com/vi/wxy234yza56/hqdefault.jpg",
+    "title": "Hip Hop Flow",
+    "artist": "Rhyme Syndicate",
+    "views": "980K"
+  },
+  {
+    "id": "bcd789efa01",
+    "img": "https://i.ytimg.com/vi/bcd789efa01/hqdefault.jpg",
+    "title": "Rock Ballad Power",
+    "artist": "The Legends",
+    "views": "620K"
+  },
+  {
+    "id": "fgh345ijk67",
+    "img": "https://i.ytimg.com/vi/fgh345ijk67/hqdefault.jpg",
+    "title": "Electronic Dance Anthem",
+    "artist": "Pulse Power",
+    "views": "1.5M"
+  },
+  {
+    "id": "lmn890opq23",
+    "img": "https://i.ytimg.com/vi/lmn890opq23/hqdefault.jpg",
+    "title": "World Music Fusion",
+    "artist": "Global Grooves",
+    "views": "310K"
+  },
+  {
+    "id": "rst456uvw78",
+    "img": "https://i.ytimg.com/vi/rst456uvw78/hqdefault.jpg",
+    "title": "Ska Party Starter",
+    "artist": "The Upbeats",
+    "views": "470K"
+  },
+  {
+    "id": "yza901bcd23",
+    "img": "https://i.ytimg.com/vi/yza901bcd23/hqdefault.jpg",
+    "title": "Ambient Chillscape",
+    "artist": "Drift Away",
+    "views": "230K"
+  },
+  {
+    "id": "efg123hij45",
+    "img": "https://i.ytimg.com/vi/efg123hij45/hqdefault.jpg",
+    "title": "Industrial Strength Beats",
+    "artist": "Machine Code",
+    "views": "710K"
+  },
+  {
+    "id": "klm678nop90",
+    "img": "https://i.ytimg.com/vi/klm678nop90/hqdefault.jpg",
+    "title": "Psychedelic Trance",
+    "artist": "Mind Bender",
+    "views": "880K"
+  },
+  {
+    "id": "qrs234tuv56",
+    "img": "https://i.ytimg.com/vi/qrs234tuv56/hqdefault.jpg",
+    "title": "Gospel Powerhouse",
+    "artist": "Faithful Voices",
+    "views": "390K"
+  },
+  {
+    "id": "wxy789yza01",
+    "img": "https://i.ytimg.com/vi/wxy789yza01/hqdefault.jpg",
+    "title": "Bluegrass Harmony",
+    "artist": "Mountain Strings",
+    "views": "160K"
+  },
+  {
+    "id": "bcd345efa67",
+    "img": "https://i.ytimg.com/vi/bcd345efa67/hqdefault.jpg",
+    "title": "Opera Grandeur",
+    "artist": "The Divas",
+    "views": "510K"
+  }
+]
