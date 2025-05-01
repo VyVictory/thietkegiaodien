@@ -28,7 +28,7 @@ import { useLayout } from "../../context/LayoutProvider";
 export const Play = ({ open }) => {
   const duration = 300;
   const { setIsPlay } = useLayout();
-  const [position, setPosition] = React.useState(32);
+  const [position, setPosition] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
   const [isLike, setLike] = React.useState(0);
   const [anchorElMenu, setAnchorElMenu] = React.useState(null);
