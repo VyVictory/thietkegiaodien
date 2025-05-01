@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   IconButton,
@@ -24,13 +24,25 @@ import {
 import { useLayout } from "../../context/LayoutProvider";
 import png300 from "../../assets/300.png";
 import authToken from "../storage/authToken";
+
 export const UserDropDow = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [userData, setUserData] = useState(null); // State to store user data
   const open = Boolean(anchorEl);
   const { setModal, isLogin, setIsLogin } = useLayout();
+
+  useEffect(() => {
+    // Fetch user data from sessionStorage when the component mounts
+    const storedUserData = sessionStorage.getItem("userProfile");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData)); // Set user data to state
+    }
+  }, []); // Empty array means this effect runs only once, when the component mounts
+
   const handleAvatarClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -38,11 +50,11 @@ export const UserDropDow = () => {
   return (
     <>
       <div className="flex items-center gap-4">
-        {isLogin ? (
+        {isLogin && userData ? (
           <IconButton onClick={handleAvatarClick}>
             <Avatar
-              alt="Victory"
-              src={png300 || "https://i.pravatar.cc/300"}
+              alt={userData.fullName || "User"} // Use full name if available
+              src={userData.avatar || "https://i.pravatar.cc/300"} // Use avatar or fallback
               className="w-8 h-8 hover:scale-110 transition-transform"
             />
           </IconButton>
@@ -68,36 +80,29 @@ export const UserDropDow = () => {
         >
           <MenuItem sx={{ opacity: 1, pb: 1 }}>
             <ListItemIcon>
-              <Avatar src={png300 || "https://i.pravatar.cc/300"} />
+              <Avatar src={userData?.avatar || "https://i.pravatar.cc/300"} />
             </ListItemIcon>
-            <div>
-              <Typography variant="subtitle1">Victory</Typography>
-              <Typography variant="body2" color="gray">
-                @vyvictory
-              </Typography>
-              <Typography
-                variant="caption"
-                color="primary"
-                sx={{ mt: 0.5, display: "block" }}
-              >
-                Quản lý Tài khoản Google của bạn
+            <div className="pl-2">
+              <Typography variant="subtitle1">{userData?.fullName || "User"}</Typography>
+              <Typography color="primary" variant="body2">
+                @{userData?.email?.split("@")[0] || "username"}
               </Typography>
             </div>
           </MenuItem>
           <Divider sx={{ borderColor: "#333" }} />
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={() => (setModal("ProfileModal"), handleClose())}>
             <ListItemIcon>
               <AccountCircle fontSize="small" htmlColor="#ccc" />
             </ListItemIcon>
-            Kênh của bạn
+            Thông tin tài khoản
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <ListItemIcon>
               <Paid fontSize="small" htmlColor="#ccc" />
             </ListItemIcon>
-            Mua Music Premium
+            Mua Next Music Premium
           </MenuItem>
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={() => (setModal("Login"), handleClose())}>
             <ListItemIcon>
               <SwitchAccount fontSize="small" htmlColor="#ccc" />
             </ListItemIcon>
@@ -114,7 +119,7 @@ export const UserDropDow = () => {
             Đăng xuất
           </MenuItem>
           <Divider sx={{ borderColor: "#333" }} />
-          <MenuItem onClick={handleClose}>
+          <MenuItem disabled onClick={handleClose}>
             <ListItemIcon>
               <CloudUpload fontSize="small" htmlColor="#ccc" />
             </ListItemIcon>
