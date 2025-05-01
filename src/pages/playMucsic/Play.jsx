@@ -23,9 +23,11 @@ import {
   Circle,
 } from "@mui/icons-material";
 import { Delete, DotIcon } from "lucide-react";
+import { useLayout } from "../../context/LayoutProvider";
 
 export const Play = ({ open }) => {
   const duration = 300;
+  const { setIsPlay } = useLayout();
   const [position, setPosition] = React.useState(32);
   const [paused, setPaused] = React.useState(false);
   const [isLike, setLike] = React.useState(0);
@@ -48,6 +50,7 @@ export const Play = ({ open }) => {
     {
       icon: <Delete className="mr-2" />,
       label: "Xóa khỏi hàng đợi",
+      name: "delete",
     },
     {
       icon: (
@@ -253,8 +256,12 @@ export const Play = ({ open }) => {
                   key={i}
                   onClick={() => {
                     handleCloseMenu();
+
                     if (item.name === "like") setLike(isLike === 1 ? 0 : 1);
-                    if (item.name === "un_like") setLike(isLike === 2 ? 0 : 2);
+                    else if (item.name === "un_like")
+                      setLike(isLike === 2 ? 0 : 2);
+                    else if (item.label === "Xóa khỏi hàng đợi")
+                      setIsPlay(false); // 👈 Thêm dòng này
                   }}
                   sx={{
                     color: "#cacaca",

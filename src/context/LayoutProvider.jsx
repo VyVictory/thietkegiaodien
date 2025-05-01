@@ -10,7 +10,7 @@ const LayoutContext = createContext();
 export const LayoutProvider = ({ children }) => {
   /** @type {[ModalName, React.Dispatch<React.SetStateAction<ModalName>>]} */
   const [modal, setModal] = useState(null);
-  const [isPlay, setIsPlay] = useState(true);
+  const [isPlay, setIsPlay] = useState(false);
   return (
     <LayoutContext.Provider value={{ isPlay, setIsPlay, modal, setModal }}>
       {children}

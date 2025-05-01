@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import Fr from "../../assets/Fr.png";
 import { BarChart3Icon, PlayIcon } from "lucide-react";
 import { MoreVert } from "@mui/icons-material";
+import { useLayout } from "../../context/LayoutProvider";
 export default function SimpleMusic() {
   const [track, setTrack] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { setIsPlay } = useLayout();
   const [isHovered, setIsHovered] = useState(false);
   useEffect(() => {
     fetch("https://itunes.apple.com/search?term=edm&media=music&limit=1001")
@@ -51,7 +53,12 @@ export default function SimpleMusic() {
         </Link>
         {isHovered && (
           <div className="absolute top-0 left-0 w-full h-full bg-black/60 flex items-center justify-center">
-            <button className="absolute bottom-2 right-2 hover:scale-110 opacity-80 hover:opacity-100 text-white rounded-full p-2 bg-green-500 hover:bg-green-600">
+            <button
+              onClick={() => {
+                setIsPlay(true);
+              }}
+              className="absolute bottom-2 right-2 hover:scale-110 opacity-80 hover:opacity-100 text-white rounded-full p-2 bg-green-500 hover:bg-green-600"
+            >
               <PlayIcon className="w-6 h-6" />
             </button>
             <div className="absolute top-2 right-2 cursor-pointer hover:scale-125 hover:text-blue-700 transition-all">
