@@ -42,7 +42,8 @@ const MainLayout = () => {
         >
           {/* Hamburger toggle chỉ hiển thị mobile */}
           <button
-            className="block xl:hidden text-gray-400 hover:text-white fixed left-4"
+            className=" xl:hidden text-gray-400 hover:text-white fixed left-4"
+            style={{zIndex: 51}}
             onClick={(e) => {
               e.stopPropagation(); // Ngăn event này chạm tới document
               setSidebarOpen((prev) => !prev);
