@@ -85,7 +85,24 @@ export const Play = ({ open }) => {
     return `${m}:${s < 10 ? `0${s}` : s}`;
   };
   const formatVolume = (v) => `${Math.round(v)}%`;
-
+  React.useEffect(() => {
+    let interval = null;
+  
+    if (!paused) {
+      interval = setInterval(() => {
+        setPosition((prev) => {
+          if (prev < duration) return prev + 1;
+          clearInterval(interval);
+          return prev;
+        });
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+  
+    return () => clearInterval(interval);
+  }, [paused]);
+  
   if (!open) return null;
 
   return (
@@ -104,10 +121,11 @@ export const Play = ({ open }) => {
             sx={{
               color: "red",
               height: 4,
+              transition: "all 0.3s ease",
               "& .MuiSlider-rail": { bgcolor: "#555", height: 4 },
               "& .MuiSlider-thumb": {
-                height: 12,
-                width: 12,
+                height: 4,
+                width: 4,
                 backgroundColor: "red",
                 borderRadius: "50%",
                 "&:hover": { backgroundColor: "#ff3333" },
