@@ -51,9 +51,9 @@ export default function SimpleList({ wid }) {
           Muốn anh đau
         </Link>
         <div className="text-[#B4B4B4] text-xs sm:text-sm truncate">
-          <span className="hover:underline">Winno</span>
+          <Link to={`/singer/1`} className="hover:underline">Winno</Link>
           <span>, </span>
-          <span className="hover:underline">Hustlang Robber</span>
+          <Link to={`/singer/1`} className="hover:underline">Hustlang Robber</Link>
         </div>
       </div>
 

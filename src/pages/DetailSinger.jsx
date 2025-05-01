@@ -2,11 +2,14 @@ import { Play, Shuffle } from "lucide-react"
 import PlayBack from "../components/music/PlayBack"
 import { useState } from "react"
 import React from "react"
+import { Link } from "react-router-dom"
+import { useLayout } from "../context/LayoutProvider"
 export default function DetailSinger() {
     const [subscribe, setSubscribe] = useState(false)
     const handleSubscribe = () => {
         setSubscribe(!subscribe)
     }
+    const { setIsPlay } = useLayout()
     React.useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -55,7 +58,7 @@ export default function DetailSinger() {
                 <h2 className="text-xl font-bold mb-4">Bài hát</h2>
                 <div className="space-y-2">
                     {[1, 2, 3, 4].map((index) => (
-                        <div key={index} className="flex items-center justify-between hover:bg-white/5 rounded-md pr-3">
+                        <Link to={`/listen/${index}`} key={index} onClick={setIsPlay} className="flex items-center justify-between hover:bg-white/5 rounded-md pr-3">
                             <div className="flex items-center gap-3">
                                 <img
                                     src="https://i.ytimg.com/vi/OIhpb7XFw78/maxresdefault.jpg"
@@ -69,7 +72,7 @@ export default function DetailSinger() {
                                 <span className="text-sm text-[#aaaaaa] hidden sm:block">9,4Tr lượt phát</span>
                                 <span className="text-sm text-[#aaaaaa]">Sao dù dễ bao phủ</span>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
                 <button className="mt-4 text-sm border border-[#aaaaaa] text-[#aaaaaa] px-4 py-1.5 rounded-full hover:bg-white/10">

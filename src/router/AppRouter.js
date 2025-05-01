@@ -20,6 +20,7 @@ import AlbumManager from "../pages/admin/AlbumManager";
 import ArtistManager from "../pages/admin/ArtistManager";
 import CategoryManager from "../pages/admin/CategoryManager";
 import { ToastContainer } from "react-toastify";
+import WishList from "../pages/WishList";
 const ScrollController = () => {
   const location = useLocation();
 
@@ -49,6 +50,7 @@ const AppRouter = () => {
             <Route path="discover" element={<Discover />} />
             <Route path="libary" element={<Libary />} />
             <Route path="playlist/:id" element={<PlayList />} />
+            <Route path="playlist/like" element={<WishList />} />
             <Route path="listen/:id" element={<Listen />} />
             <Route path="singer/:id" element={<DetailSinger />} />
           </Route>
