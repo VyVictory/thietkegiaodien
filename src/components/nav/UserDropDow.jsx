@@ -21,6 +21,7 @@ import {
   Feedback,
 } from "@mui/icons-material";
 import { useLayout } from "../../context/LayoutProvider";
+import png300 from "../../assets/300.png";
 export const UserDropDow = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -38,7 +39,7 @@ export const UserDropDow = () => {
         <IconButton onClick={handleAvatarClick}>
           <Avatar
             alt="Victory"
-            src="https://i.pravatar.cc/300"
+            src={png300 || "https://i.pravatar.cc/300"}
             className="w-8 h-8 hover:scale-110 transition-transform"
           />
         </IconButton>
@@ -54,7 +55,7 @@ export const UserDropDow = () => {
         >
           <MenuItem sx={{ opacity: 1, pb: 1 }}>
             <ListItemIcon>
-              <Avatar src="https://i.pravatar.cc/300" />
+              <Avatar src={png300 || "https://i.pravatar.cc/300"} />
             </ListItemIcon>
             <div>
               <Typography variant="subtitle1">Victory</Typography>
