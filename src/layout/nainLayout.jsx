@@ -43,7 +43,7 @@ const MainLayout = () => {
           {/* Hamburger toggle chỉ hiển thị mobile */}
           <button
             className=" xl:hidden text-gray-400 hover:text-white fixed left-4"
-            style={{zIndex: 51}}
+            style={{ zIndex: 51 }}
             onClick={(e) => {
               e.stopPropagation(); // Ngăn event này chạm tới document
               setSidebarOpen((prev) => !prev);
@@ -81,7 +81,7 @@ const MainLayout = () => {
           {/* Main content */}
           <main
             style={{ paddingTop: NAVBAR_HEIGHT }}
-            className="flex-1 p-4 relative max-w-6xl mx-auto overflow-y-auto"
+            className="flex-1 relative max-w-6xl mx-auto overflow-y-auto"
           >
             <Outlet />
             {isPlay && <div className="h-20"></div>}

@@ -11,12 +11,12 @@ const TabsList = () => {
     ];
 
     return (
-        <div className="flex flex-col max-h-full">
-            <div className="px-4 flex justify-between text-center flex-shrink-0 items-center w-full">
+        <div className="flex flex-col h-full md:max-h-full">
+            <div className="px-2 md:px-4 flex justify-between text-center flex-shrink-0 items-center w-full">
                 {tabs.map((tab) => (
                     <span
                         key={tab.key}
-                        className={`py-3 px-10 cursor-pointer border-b-[1px] ${activeTab === tab.key ? 'border-white text-white' : 'border-gray-600 text-gray-400'} text-center'
+                        className={`py-3 px-3 md:px-10 cursor-pointer border-b-[1px] ${activeTab === tab.key ? 'border-white text-white' : 'border-gray-600 text-gray-400'} text-center'
                             }`}
                         onClick={() => setActiveTab(tab.key)}
                     >
@@ -25,13 +25,12 @@ const TabsList = () => {
                 ))}
             </div>
 
-            <div className="overflow-y-auto flex-1 px-2 max-h-[70%]">
+            <div className="overflow-y-auto flex-1 px-2 max-h-[400px] md:max-h-[70%]">
                 {activeTab === 'next' && (
                     <div className="pt-5">
                         <div className='px-4 text-sm'>Đang phát từ</div>
-                        <div className='px-4 font-semibold text-xl'>Danh sách nhạc yêu thích</div>
+                        <div className='px-4 font-semibold text-xl'>Danh sách nhạc </div>
                         <div className='grid gap-3 mt-5'>
-                            {/* SimpleList lặp nhiều lần ở đây */}
                             <SimpleList />
                             <SimpleList />
                             <SimpleList />
@@ -39,14 +38,12 @@ const TabsList = () => {
                             <SimpleList />
                             <SimpleList />
                             <SimpleList />
-
                         </div>
                     </div>
                 )}
                 {activeTab === 'lyrics' && (
                     <div className="text-white p-4 whitespace-pre-line ">
-                        <pre className="whitespace-pre-wrap max-w-sm">
-                            {/* lyrics ở đây */}
+                        <pre className="whitespace-pre-wrap max-w-full md:max-w-sm">
                             {`I'm only one call away
 I'll be there to save the day
 Superman got nothing on me-e
@@ -106,7 +103,6 @@ I'm only one call away`}
                 )}
             </div>
         </div>
-
     );
 };
 

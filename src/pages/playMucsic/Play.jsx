@@ -87,7 +87,7 @@ export const Play = ({ open }) => {
   const formatVolume = (v) => `${Math.round(v)}%`;
   React.useEffect(() => {
     let interval = null;
-  
+
     if (!paused) {
       interval = setInterval(() => {
         setPosition((prev) => {
@@ -99,10 +99,10 @@ export const Play = ({ open }) => {
     } else {
       clearInterval(interval);
     }
-  
+
     return () => clearInterval(interval);
   }, [paused]);
-  
+
   if (!open) return null;
 
   return (

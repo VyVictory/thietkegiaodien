@@ -25,11 +25,15 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-
+  width: '90%',
+  maxWidth: '600px',
+  maxHeight: '90vh',
+  overflowY: 'auto',
   text: 'white',
   bgcolor: '#212121',
   boxShadow: 24,
-  p: 4,
+  p: { xs: 2, sm: 3, md: 4 },
+  borderRadius: '8px',
 };
 export default function SideBar() {
   const location = useLocation();
@@ -63,135 +67,20 @@ export default function SideBar() {
         </Link>
       </div>
       <div className="mt-3 grid gap-5 text-nowrap">
-        <div onClick={handleOpen} className="p-2 flex items-center justify-center gap-2 rounded-3xl bg-[#1D1D1D]">
+        <div onClick={handleOpen} className="p-2 flex items-center justify-center gap-2 rounded-3xl bg-[#1D1D1D] cursor-pointer">
           <CreateNewFolder />
           <span>Danh sách phát mới</span>
         </div>
-        <div className="p-4 flex items-center gap-2 rounded-md hover:bg-[#353535]">
+        <Link to={'playlist/like'} className="p-4 flex items-center gap-2 rounded-md hover:bg-[#353535]">
           <ThumbUpAlt />
           <span>Nhạc đã thích</span>
           <PlayCircle sx={{ fontSize: 45 }} />
-        </div>
+        </Link>
         <div className="p-4 flex items-center gap-2 rounded-md hover:bg-[#353535]">
           <QueueMusicTwoTone />
           <span>Danh sách phát nhạc</span>
         </div>
       </div>
-      {/* {modal && (
-        <div
-          className="fixed z-50 top-0 left-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center"
-          onClick={handleModal}
-        >
-          <div
-            className="bg-[#212121] text-white p-6 rounded-lg shadow-lg "
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Danh sách phát mới</h2>
-              <button onClick={handleModal} className="text-gray-400 hover:text-white">
-                <Close />
-              </button>
-            </div>
-            <div className="grid gap-4 my-5">
-              <div>
-                <TextField
-                  id="standard-basic"
-                  label="Tiêu đề"
-                  variant="standard"
-                  sx={{
-                    width: '80ch',
-                    input: { color: 'white' }, // màu chữ
-                    label: { color: 'white' }, // màu label bình thường
-                    '& label.Mui-focused': {
-                      color: 'white', // màu label sau khi focus
-                    },
-                    '& .MuiInput-underline:before': {
-                      borderBottomColor: 'white',
-                    },
-                    '& .MuiInput-underline:after': {
-                      borderBottomColor: 'white',
-                    },
-                  }}
-                />
-              </div>
-              <div>
-                <TextField
-                  id="standard-basic"
-                  label="Thông tin mô tả"
-                  variant="standard"
-                  sx={{
-                    width: '80ch',
-                    input: { color: 'white' }, // màu chữ
-                    label: { color: 'white' }, // màu label bình thường
-                    '& label.Mui-focused': {
-                      color: 'white', // màu label sau khi focus
-                    },
-                    '& .MuiInput-underline:before': {
-                      borderBottomColor: 'white',
-                    },
-                    '& .MuiInput-underline:after': {
-                      borderBottomColor: 'white',
-                    },
-                  }}
-                />
-              </div>
-              <div>
-                <Box sx={{ maxWidth: 200 }}>
-                  <FormControl
-                    fullWidth
-                    variant="standard"
-                    sx={{
-                      color: 'white',
-                      '& label': { color: '#52525B' },
-                      '& label.Mui-focused': { color: '#52525B' },
-                      '& .MuiNativeSelect-root': { color: 'white' },
-                      '& .MuiNativeSelect-icon': { color: 'white' }, // mũi tên dropdown
-                      '& .MuiInput-underline:before': { borderBottomColor: 'white' },
-                      '& .MuiInput-underline:after': { borderBottomColor: 'white' },
-                      '& select': {
-                        color: 'white',
-                        backgroundColor: 'transparent',
-                      },
-                    }}
-                  >
-                    <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                      quyền riêng tư
-                    </InputLabel>
-                    <NativeSelect
-                      defaultValue={30}
-                      inputProps={{
-                        name: 'age',
-                        id: 'uncontrolled-native',
-                      }}
-                    >
-                      <option style={{ backgroundColor: '#333', color: 'white' }}>Công khai </option>
-                      <option style={{ backgroundColor: '#333', color: 'white' }}>Riêng tư</option>
-
-                    </NativeSelect>
-                  </FormControl>
-                </Box>
-
-
-              </div>
-            </div>
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={handleModal}
-                className="bg-transparent border border-gray-600 hover:border-gray-400 text-gray-300 px-4 py-2 rounded"
-              >
-                Hủy
-              </button>
-              <Link
-                onClick={handleModal}
-                to={"/playlist/1"}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-              >
-                Tạo
-              </Link>
-            </div>
-          </div>
-        </div>
-      )} */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -202,19 +91,20 @@ export default function SideBar() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <h2 className="text-xl font-bold text-white">Danh sách phát mới</h2>
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }} component="div">
             <div className="grid gap-4 my-5">
               <div>
                 <TextField
                   id="standard-basic"
                   label="Tiêu đề"
                   variant="standard"
+                  fullWidth
                   sx={{
-                    width: '80ch',
-                    input: { color: 'white' }, // màu chữ
-                    label: { color: 'white' }, // màu label bình thường
+                    width: '100%',
+                    input: { color: 'white' },
+                    label: { color: 'white' },
                     '& label.Mui-focused': {
-                      color: 'white', // màu label sau khi focus
+                      color: 'white',
                     },
                     '& .MuiInput-underline:before': {
                       borderBottomColor: 'white',
@@ -230,12 +120,13 @@ export default function SideBar() {
                   id="standard-basic"
                   label="Thông tin mô tả"
                   variant="standard"
+                  fullWidth
                   sx={{
-                    width: '80ch',
-                    input: { color: 'white' }, // màu chữ
-                    label: { color: 'white' }, // màu label bình thường
+                    width: '100%',
+                    input: { color: 'white' },
+                    label: { color: 'white' },
                     '& label.Mui-focused': {
-                      color: 'white', // màu label sau khi focus
+                      color: 'white',
                     },
                     '& .MuiInput-underline:before': {
                       borderBottomColor: 'white',
@@ -247,7 +138,7 @@ export default function SideBar() {
                 />
               </div>
               <div>
-                <Box sx={{ maxWidth: 200 }}>
+                <Box sx={{ maxWidth: { xs: '100%', sm: '200px' } }}>
                   <FormControl
                     fullWidth
                     variant="standard"
@@ -256,7 +147,7 @@ export default function SideBar() {
                       '& label': { color: '#52525B' },
                       '& label.Mui-focused': { color: '#52525B' },
                       '& .MuiNativeSelect-root': { color: 'white' },
-                      '& .MuiNativeSelect-icon': { color: 'white' }, // mũi tên dropdown
+                      '& .MuiNativeSelect-icon': { color: 'white' },
                       '& .MuiInput-underline:before': { borderBottomColor: 'white' },
                       '& .MuiInput-underline:after': { borderBottomColor: 'white' },
                       '& select': {
@@ -277,25 +168,22 @@ export default function SideBar() {
                     >
                       <option style={{ backgroundColor: '#333', color: 'white' }}>Công khai </option>
                       <option style={{ backgroundColor: '#333', color: 'white' }}>Riêng tư</option>
-
                     </NativeSelect>
                   </FormControl>
                 </Box>
-
-
               </div>
             </div>
-            <div className="flex justify-end gap-3">
+            <div className="flex flex-wrap justify-end gap-3 mt-6">
               <button
                 onClick={handleClose}
-                className="bg-[#F31260] text-white px-5 py-2 rounded-full"
+                className="bg-[#F31260] text-white px-4 py-2 rounded-full text-sm sm:text-base sm:px-5"
               >
                 Hủy
               </button>
               <Link
                 onClick={handleClose}
                 to={"/playlist/1"}
-                className="bg-white text-black px-5 py-2 rounded-full"
+                className="bg-white text-black px-4 py-2 rounded-full text-sm sm:text-base sm:px-5"
               >
                 Tạo
               </Link>

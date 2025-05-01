@@ -14,18 +14,28 @@ export default function Home() {
     window.scrollTo(0, 0)
   }, [])
   return (
-    // <div className='flex'>
-    <div className=' grid gap-10 m-10'>
-      <div className='Grid'>
-        {keywords.map((k) => (
-          <div className='bg-[#363D41] rounded-2xl flex justify-center items-center p-1'>{k}</div>
-        ))}
+    <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+      {/* Keywords section */}
+      <div className="mt-4 mb-8">
+        <div className="flex flex-wrap gap-2 sm:gap-3">
+          {keywords.map((k, index) => (
+            <div
+              key={index}
+              className="bg-[#363D41] hover:bg-[#4c555c] rounded-full flex justify-center items-center px-3 py-1.5 text-sm cursor-pointer transition-colors"
+            >
+              {k}
+            </div>
+          ))}
+        </div>
       </div>
-      <PlayBack title={"Tuyển tập nhạc cho bạn"} />
-      <Singer title={"Ca sĩ/ Rapper"} />
-      <PlayBack title={"Nhạc mới phát hành"} />
-      <PlayBack title={"Nhạc Trendding"} />
+
+      {/* Content sections with appropriate spacing */}
+      <div className="space-y-8 md:space-y-10 pb-16">
+        <PlayBack title={"Tuyển tập nhạc cho bạn"} />
+        <Singer title={"Ca sĩ/ Rapper"} />
+        <PlayBack title={"Nhạc mới phát hành"} />
+        <PlayBack title={"Nhạc Trendding"} />
+      </div>
     </div>
-    // </div>
   )
 }
