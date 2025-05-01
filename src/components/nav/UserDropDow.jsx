@@ -67,7 +67,7 @@ export const UserDropDow = () => {
                 color="primary"
                 sx={{ mt: 0.5, display: "block" }}
               >
-                Quản lý Tài khoản Google của bạn
+                Quản lý Tài khoản của bạn
               </Typography>
             </div>
           </MenuItem>
