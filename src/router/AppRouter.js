@@ -14,6 +14,8 @@ import SongManager from "../pages/admin/SongManager";
 import AlbumManager from "../pages/admin/AlbumManager";
 import ArtistManager from "../pages/admin/ArtistManager";
 import CategoryManager from "../pages/admin/CategoryManager";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 
 // Component to control body overflow based on route
@@ -60,6 +62,8 @@ const AppRouter = () => {
           <Route path="categorymanager" element={<CategoryManager />} />
           {/* Add more routes if needed */}
         </Route>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </Router>
   );
