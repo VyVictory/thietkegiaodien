@@ -108,8 +108,7 @@ export default function Nav() {
                 <li
                   key={track.trackId}
                   className="flex items-center gap-3 p-2 hover:bg-gray-800 cursor-pointer text-sm text-white transition-all"
-                  onClick={() => {
-                    setMusicData(track);
+                  onClick={() => { 
                     setMusicDetail(track);
                     navigate("/listen/" + track?.collectionId);
                     setSearchResults([]);
