@@ -130,7 +130,7 @@ export default function TableSong({ query }) {
                 </tr>
             ) : (
                 filteredSong.map((song, index) => (
-                    <tr key={song.id} className="border-b border-[#292929]">
+                    <tr key={song.id} className={`border-b border-[#292929] ${editId === song.id && "text-black"}`}>
                         <td className="py-4">{index + 1}</td>
 
                         {editId === song.id ? (

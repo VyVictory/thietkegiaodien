@@ -60,12 +60,13 @@ export default function TableArtist({ query }) {
                     </td>
                 </tr>
             ) : (
-                filteredArtist.map((artist, index) => (
-                    <tr key={artist.id} className="border-b border-[#292929]">
+                filteredArtist.map((artist, index) => ( 
+                                                <tr key={artist.id} className={`border-b border-[#292929] ${editId === artist.id && "text-black"}`}> 
+
                         <td className="py-4">{index + 1}</td>
 
                         {editId === artist.id ? (
-                            <>
+                            <div className='text-black'>
                                 <td className="py-2">
                                     <input name="name" value={editArtist.name} onChange={handleEditChange} />
                                 </td>
@@ -85,7 +86,7 @@ export default function TableArtist({ query }) {
                                     <button onClick={handleSave} className="px-4 py-1 bg-green-500 text-white rounded">Lưu</button>
                                     <button onClick={handleCancel} className="px-4 py-1 bg-gray-500 text-white rounded">Hủy</button>
                                 </td>
-                            </>
+                            </div>
                         ) : (
                             <>
                                 <td className="py-4">{artist.name}</td>
