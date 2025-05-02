@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function TableSong({ query }) {
-    const [songs] = useState([
+    const [songs, setSongs] = useState([
         {
             id: 1,
             name: "bao tiền một mớ bình yên?",
@@ -83,33 +83,84 @@ export default function TableSong({ query }) {
             releaseDate: "2020-02-11"
         }
     ]);
+
+    const [editId, setEditId] = useState(null);
+    const [editSong, setEditSong] = useState({});
+
+    const handleDelete = (id) => {
+        const updated = songs.filter(song => song.id !== id);
+        setSongs(updated);
+    };
+
+    const handleEditClick = (song) => {
+        setEditId(song.id);
+        setEditSong(song);
+    };
+
+    const handleEditChange = (e) => {
+        setEditSong({
+            ...editSong,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSave = () => {
+        const updated = songs.map(song =>
+            song.id === editId ? editSong : song
+        );
+        setSongs(updated);
+        setEditId(null);
+    };
+
+    const handleCancel = () => {
+        setEditId(null);
+    };
+
     const filteredSong = query.trim() === "" ? songs : songs.filter(song => {
         return song.name.toLowerCase().includes(query.toLowerCase());
     });
+
     return (
         <tbody>
             {filteredSong.length === 0 ? (
                 <tr>
-                    <td colSpan="5" className="text-center py-4">
+                    <td colSpan="7" className="text-center py-4">
                         <p>Unable to find Song: <i>"{query}"</i></p>
                     </td>
                 </tr>
             ) : (
                 filteredSong.map((song, index) => (
-                    <tr key={index} className="border-b border-[#292929]">
+                    <tr key={song.id} className="border-b border-[#292929]">
                         <td className="py-4">{index + 1}</td>
-                        <td className="py-4">{song.name}</td>
-                        <td className="py-4">{song.artist}</td>
-                        <td className="py-4">{song.album}</td>
-                        <td className="py-4">{song.genre}</td>
-                        <td className="py-4">{song.releaseDate}</td>
-                        <td className="py-4 flex gap-2">
-                            <button className="px-4 py-1 bg-[#2c8dd6] text-white rounded">Sửa</button>
-                            <button className="px-4 py-1 bg-[#ff0000] text-white rounded">Xóa</button>
-                        </td>
+
+                        {editId === song.id ? (
+                            <>
+                                <td className="py-2"><input name="name" value={editSong.name} onChange={handleEditChange} /></td>
+                                <td className="py-2"><input name="artist" value={editSong.artist} onChange={handleEditChange} /></td>
+                                <td className="py-2"><input name="album" value={editSong.album} onChange={handleEditChange} /></td>
+                                <td className="py-2"><input name="genre" value={editSong.genre} onChange={handleEditChange} /></td>
+                                <td className="py-2"><input type="date" name="releaseDate" value={editSong.releaseDate} onChange={handleEditChange} /></td>
+                                <td className="py-4 flex gap-2">
+                                    <button onClick={handleSave} className="px-4 py-1 bg-green-500 text-white rounded">Lưu</button>
+                                    <button onClick={handleCancel} className="px-4 py-1 bg-gray-500 text-white rounded">Hủy</button>
+                                </td>
+                            </>
+                        ) : (
+                            <>
+                                <td className="py-4">{song.name}</td>
+                                <td className="py-4">{song.artist}</td>
+                                <td className="py-4">{song.album}</td>
+                                <td className="py-4">{song.genre}</td>
+                                <td className="py-4">{song.releaseDate}</td>
+                                <td className="py-4 flex gap-2">
+                                    <button onClick={() => handleEditClick(song)} className="px-4 py-1 bg-[#2c8dd6] text-white rounded">Sửa</button>
+                                    <button onClick={() => handleDelete(song.id)} className="px-4 py-1 bg-[#ff0000] text-white rounded">Xóa</button>
+                                </td>
+                            </>
+                        )}
                     </tr>
                 ))
             )}
         </tbody>
-    )
+    );
 }
