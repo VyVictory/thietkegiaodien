@@ -8,18 +8,24 @@ import {
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useLayout } from "../../context/LayoutProvider";
+// Thêm defaultTrack bên ngoài component
+const defaultTrack = {
+  trackName: "Datmaniac",
+  artistName: "Hustlang Robber",
+  artworkUrl100: "https://rukminim2.flixcart.com/image/850/1000/l01blow0/poster/2/w/z/medium-music-wallpaper-on-fine-art-paper-theme-images-hd-original-imagbx2phbqcnzym.jpeg?q=90&crop=false",
+  trackTimeMillis: 300000, // 5 phút
+  trackId: "default-track-id"
+};
 
 export default function SimpleList({ wid, trackId }) {
-  const [track, setTrack] = useState(null);
+  const [track, setTrack] = useState(defaultTrack); // Khởi tạo với dữ liệu mặc định
   const [hover, setHover] = useState(false);
   const { setIsPlay, setMusicData, setMusicDetail } = useLayout();
-  // Like/dislike local state
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
 
-  // Fetch track info from iTunes Lookup API
   useEffect(() => {
-    if (!trackId) return;
+    if (!trackId) return; // Nếu không có trackId, giữ nguyên defaultTrack
     async function fetchTrack() {
       try {
         const res = await fetch(
@@ -47,8 +53,6 @@ export default function SimpleList({ wid, trackId }) {
     setLike(false);
   };
 
-  if (!track) return null;
-
   const formatMillis = (ms) => {
     const seconds = Math.floor(ms / 1000);
     const m = Math.floor(seconds / 60);
@@ -63,7 +67,7 @@ export default function SimpleList({ wid, trackId }) {
     >
       <Link
         onClick={() => setMusicDetail(track)}
-        to={`/listen/${encodeURIComponent(track?.trackName || "Datmaniac")}`}
+        to={`/listen/${encodeURIComponent(track.trackName)}`}
         className="relative flex-shrink-0"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
