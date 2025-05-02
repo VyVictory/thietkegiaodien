@@ -35,7 +35,7 @@ export default function NewReleasesSection({ items, title, isVideo }) {
         </h2>
         <div className="flex items-center space-x-3">
           <Link
-            to="/releases"
+            to="/discover/folk"
             className="text-gray-200 border-gray-400 border text-sm  px-3 py-1  hover:bg-gray-700 rounded-lg"
           >
             Xem thêm
