@@ -6,8 +6,8 @@ const TabsList = () => {
   const [activeTab, setActiveTab] = useState("lyrics");
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const currentWordRef = useRef(null);
-  const { isPlay, musicData, musicDetail, position, duration } = useLayout();
-
+  const { isPlay, musicData, musicDetail, position, duration } = useLayout(); 
+  const lyrics = musicData?.lyrics || lyricsDefault;
   const lines = lyrics.split("\n"); // giữ xuống dòng
   const wordsPerLine = lines.map((line) => line.split(/\s+/));
   const totalWords = wordsPerLine.flat().length;
@@ -26,14 +26,14 @@ const TabsList = () => {
     { key: "lyrics", label: "Lời nhạc" },
     { key: "related", label: "Liên quan" },
   ];
-//   useEffect(() => {
-//     if (currentWordRef.current) {
-//       currentWordRef.current.scrollIntoView({
-//         behavior: "smooth",
-//         block: "center",
-//       });
-//     }
-//   }, [currentWordIndex]);
+  //   useEffect(() => {
+  //     if (currentWordRef.current) {
+  //       currentWordRef.current.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "center",
+  //       });
+  //     }
+  //   }, [currentWordIndex]);
 
   return (
     <div className="flex flex-col h-full md:max-h-full">
@@ -120,7 +120,7 @@ const TabsList = () => {
 
 export default TabsList;
 
-const lyrics = `I'm only one call away
+const lyricsDefault = `I'm only one call away
 I'll be there to save the day
 Superman got nothing on me-e
 I'm only one call away

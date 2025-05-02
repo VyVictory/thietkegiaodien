@@ -24,7 +24,7 @@ import {
   ArrowDropUp,
   Cached,
 } from "@mui/icons-material";
-import { Delete } from "lucide-react";
+import { Delete, Download } from "lucide-react";
 import { useLayout } from "../../context/LayoutProvider";
 import shuffleWhite from "../../assets/shuffleW.png";
 import { useEffect } from "react";
@@ -90,6 +90,11 @@ export const Play = ({ open }) => {
     {
       icon: <Favorite className="mr-2" />,
       label: "Thêm vào danh sách ưa thích",
+    },
+    {
+      icon: <Download className="mr-2" />,
+      label: "Tải về máy",
+      name: "download",
     },
     {
       icon: <PlaylistAdd className="mr-2" />,
@@ -319,7 +324,9 @@ export const Play = ({ open }) => {
                   key={i}
                   onClick={() => {
                     handleCloseMenu();
-
+                    if (item.name === "download") {
+                      window.location.href = musicData?.previewUrl;
+                    }
                     if (item.name === "like") setLike(isLike === 1 ? 0 : 1);
                     else if (item.name === "un_like")
                       setLike(isLike === 2 ? 0 : 2);
