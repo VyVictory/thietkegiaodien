@@ -36,8 +36,15 @@ export const Play = ({ open }) => {
   const navigate = useNavigate();
   const audioRef = useRef();
 
-  const { setIsPlay, musicData, position, setPosition, duration, setDuration } =
-    useLayout();
+  const {
+    setIsPlay,
+    musicData,
+    position,
+    setPosition,
+    duration,
+    setDuration,
+    setMusicDetail,
+  } = useLayout();
 
   const [isNext, setIsNext] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
@@ -206,19 +213,30 @@ export const Play = ({ open }) => {
 
           {/* CENTER */}
           <div className="flex items-center gap-3 flex-1 overflow-hidden  justify-center">
-            <img
-              src={
-                musicData?.artworkUrl100 ||
-                "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/d9/fa/1b/lost-valley.jpg?w=1200&h=-1&s=1"
-              }
-              alt="Thumbnail"
-              className="hidden sm:block h-14 w-16 object-cover rounded flex-shrink-0"
-            />
+            <Link
+            className="mb-2"
+              onClick={() => setMusicDetail(musicData)}
+              to={`/listen/${encodeURIComponent(musicData?.trackName || "Datmaniac")}`}
+            >
+              {" "}
+              <img
+                src={
+                  musicData?.artworkUrl100 ||
+                  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/d9/fa/1b/lost-valley.jpg?w=1200&h=-1&s=1"
+                }
+                alt="Thumbnail"
+                className="hidden sm:block h-16 w-16 object-cover rounded flex-shrink-0"
+              />
+            </Link>
             <div className="flex flex-col overflow-hidden mb-2 gap-3">
-              <span className="font-semibold truncate">
+              <Link
+                onClick={() => setMusicDetail(musicData)}
+                to={`/listen/${encodeURIComponent(musicData?.trackName || "Datmaniac")}`}
+                className="font-semibold truncate"
+              >
                 {musicData?.trackName ||
                   ' Nhạc TIK TOK Trung Quốc 2022 " Tuyệt Đỉnh Gây Nghiện " ♫ Top 10 Nhạc EDM'}
-              </span>
+              </Link>
               <div className="text-xs text-gray-400 flex items-center gap-1 truncate">
                 <Link
                   to={"/singer/" + (musicData?.artistName || "EDM Music")}
