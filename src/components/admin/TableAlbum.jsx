@@ -66,7 +66,7 @@ export default function TableAlbum({ query }) {
                         <td className="py-4">{index + 1}</td>
 
                         {editId === album.id ? (
-                            <div className='text-black'>
+                            <>
                                 <td className="py-2">
                                     <input name="name" value={editAlbum.name} onChange={handleEditChange} />
                                 </td>
@@ -86,7 +86,7 @@ export default function TableAlbum({ query }) {
                                     <button onClick={handleSave} className="px-4 py-1 bg-green-500 text-white rounded">Lưu</button>
                                     <button onClick={handleCancel} className="px-4 py-1 bg-gray-500 text-white rounded">Hủy</button>
                                 </td>
-                            </div>
+                            </>
                         ) : (
                             <>
                                 <td className="py-4">{album.name}</td>

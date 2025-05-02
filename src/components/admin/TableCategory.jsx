@@ -65,7 +65,7 @@ export default function TableCategory({ query }) {
                         <td className="py-4">{index + 1}</td>
 
                         {editId === category.id ? (
-                            <div className='text-black'>
+                            <>
                                 <td className="py-2"><input name="name" value={editCategory.name} onChange={handleEditChange} /></td>
                                 <td className="py-2"><input name="desc" value={editCategory.desc} onChange={handleEditChange} /></td>
                                 <td className="py-2"><input type="number" name="songtotal" value={editCategory.songtotal} onChange={handleEditChange} /></td>
@@ -75,7 +75,7 @@ export default function TableCategory({ query }) {
                                     <button onClick={handleSave} className="px-4 py-1 bg-green-500 text-white rounded">Lưu</button>
                                     <button onClick={handleCancel} className="px-4 py-1 bg-gray-500 text-white rounded">Hủy</button>
                                 </td>
-                            </div>
+                            </>
                         ) : (
                             <>
                                 <td className="py-4">{category.name}</td>
