@@ -74,10 +74,10 @@ export default function SideBar() {
           <span>Nhạc đã thích</span>
           <PlayCircle sx={{ fontSize: 45 }} />
         </Link>
-        <div className="p-4 flex items-center gap-2 rounded-md hover:bg-[#353535]">
+        <Link to={"/playlist/1"} className="p-4 flex items-center gap-2 rounded-md hover:bg-[#353535]">
           <QueueMusicTwoTone />
           <span>Danh sách phát nhạc</span>
-        </div>
+        </Link>
       </div>
       <Modal
         open={open}
