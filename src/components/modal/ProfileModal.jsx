@@ -69,6 +69,7 @@ export default function ProfileModal({ userData, onUpdate }) {
       phone: formData.phone,
       avatar: formData.previewAvatar,
     };
+    console.log("Updated user data:", updatedUser);
     sessionStorage.setItem("userProfile", JSON.stringify(updatedUser));
     if (onUpdate) onUpdate(updatedUser);
     window.location.reload();
@@ -156,7 +157,7 @@ export default function ProfileModal({ userData, onUpdate }) {
           </Button>
           <Button
             variant="contained"
-            onClick={() => handleSubmit}
+            onClick={() => handleSubmit()}
             sx={{
               backgroundColor: "#00bcd4",
               color: "#000",
