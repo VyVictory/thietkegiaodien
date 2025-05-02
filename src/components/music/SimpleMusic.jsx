@@ -10,7 +10,7 @@ export default function SimpleMusic() {
   const name = id || null;
   const [track, setTrack] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { setIsPlay, setMusicData,setMusicDetail} = useLayout();
+  const { setIsPlay, setMusicData, setMusicDetail } = useLayout();
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -41,14 +41,7 @@ export default function SimpleMusic() {
     >
       <div className="relative rounded-md overflow-hidden">
         <Link
-          onClick={() =>
-            setMusicDetail({
-              trackName: trackName,
-              artistName: name || artistName,
-              collectionId: collectionId,
-              artworkUrl100: imgUrl,
-            })
-          }
+          onClick={() => setMusicDetail(track)}
           to={`/listen/${encodeURIComponent(trackName || "Datmaniac")}`}
           className="block"
         >
@@ -64,12 +57,7 @@ export default function SimpleMusic() {
             <button
               onClick={() => {
                 setIsPlay(true);
-                setMusicData({
-                  trackName: trackName,
-                  artistName: name || artistName,
-                  collectionId: collectionId,
-                  artworkUrl100: imgUrl,
-                });
+                setMusicData(track);
               }}
               className="absolute bottom-2 right-2 pointer-events-auto hover:scale-110 opacity-80 hover:opacity-100 text-white rounded-full p-2 bg-green-500 hover:bg-green-600"
             >

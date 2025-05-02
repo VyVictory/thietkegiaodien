@@ -29,10 +29,11 @@ import { useLayout } from "../../context/LayoutProvider";
 import shuffleWhite from "../../assets/shuffleW.png";
 import { useEffect } from "react";
 import { Links } from "react-router-dom";
+import MusicPlayer from "./MusicPlayer";
 export const Play = ({ open }) => {
   const navigate = useNavigate();
 
-  const { setIsPlay, musicData, position, setPosition, duration } = useLayout();
+  const { setIsPlay, musicData, position, setPosition, duration ,setDuration} = useLayout();
 
   const [isNext, setIsNext] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
@@ -60,23 +61,23 @@ export const Play = ({ open }) => {
     return `${m}:${s < 10 ? `0${s}` : s}`;
   };
   const formatVolume = (v) => `${Math.round(v)}%`;
-  React.useEffect(() => {
-    let interval = null;
+  // React.useEffect(() => {
+  //   let interval = null;
 
-    if (!paused) {
-      interval = setInterval(() => {
-        setPosition((prev) => {
-          if (prev < duration) return prev + 1;
-          clearInterval(interval);
-          return prev;
-        });
-      }, 1000);
-    } else {
-      clearInterval(interval);
-    }
+  //   if (!paused) {
+  //     interval = setInterval(() => {
+  //       setPosition((prev) => {
+  //         if (prev < duration) return prev + 1;
+  //         clearInterval(interval);
+  //         return prev;
+  //       });
+  //     }, 1000);
+  //   } else {
+  //     clearInterval(interval);
+  //   }
 
-    return () => clearInterval(interval);
-  }, [paused]);
+  //   return () => clearInterval(interval);
+  // }, [paused]);
   const menuItems = [
     {
       icon: <Favorite className="mr-2" />,
@@ -394,7 +395,12 @@ export const Play = ({ open }) => {
                 </IconButton>
               </div>
             </Menu>
-
+            <MusicPlayer
+              musicData={musicData}
+              paused={paused}
+              setPosition={setPosition}
+              setDuration={setDuration}
+            />
             {/* Collapse */}
             <IconButton
               onClick={() => {

@@ -25,7 +25,7 @@ export const LayoutProvider = ({ children }) => {
       setIsLogin(true);
     } else {
       setIsLogin(false);
-    } 
+    }
   }, [token]);
   useEffect(() => {
     console.log("isModal", modal);
@@ -50,6 +50,7 @@ export const LayoutProvider = ({ children }) => {
         setPosition,
         setUser,
         duration,
+        setDuration,
       }}
     >
       {children}
