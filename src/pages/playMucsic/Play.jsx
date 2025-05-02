@@ -214,7 +214,7 @@ export const Play = ({ open }) => {
           {/* CENTER */}
           <div className="flex items-center gap-3 flex-1 overflow-hidden  justify-center">
             <Link
-            className="mb-2"
+              className="mb-2"
               onClick={() => setMusicDetail(musicData)}
               to={`/listen/${encodeURIComponent(musicData?.trackName || "Datmaniac")}`}
             >
@@ -312,7 +312,13 @@ export const Play = ({ open }) => {
                     }}
                   />
                 </Box>
-              </Popover>
+              </Popover>{" "}
+              <IconButton
+                onClick={() => setIsNext(2)}
+                className="hidden sm:block"
+              >
+                <Cached className="text-gray-300" fontSize="medium" />
+              </IconButton>
               <IconButton
                 onClick={() => {
                   setIsNext(1);
@@ -324,12 +330,6 @@ export const Play = ({ open }) => {
                   alt="Album"
                   className={`w-6 h-6 rounded-full `}
                 />
-              </IconButton>
-              <IconButton
-                onClick={() => setIsNext(2)}
-                className="hidden sm:block"
-              >
-                <Cached className="text-gray-300" fontSize="medium" />
               </IconButton>
             </div>
             {/* More Menu */}
