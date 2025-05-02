@@ -55,6 +55,7 @@ const CustomSelect = ({ options, defaultValue, onSelect }) => {
 };
 
 const musicGenres = [
+  "TheFatRat",
   "Pop",
   "J-Pop",
   "Nhạc châu phi",

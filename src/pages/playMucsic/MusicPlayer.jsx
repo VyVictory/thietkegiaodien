@@ -1,15 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 
-const MusicPlayer = ({ musicData, paused, setPosition, setDuration }) => {
+const MusicPlayer = forwardRef(({ musicData, paused, setPosition, setDuration }, ref) => {
   const audioRef = useRef(null);
 
-  // Tự động tải và phát nhạc khi musicData thay đổi
+  // Cho phép cha truy cập vào audioRef
+  useImperativeHandle(ref, () => audioRef.current);
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio || !musicData) return;
 
-    audio.pause(); // Dừng bài cũ
-    audio.load();  // Tải bài mới
+    audio.pause();
+    audio.load();
 
     if (!paused) {
       audio.play().catch(err => {
@@ -18,7 +20,6 @@ const MusicPlayer = ({ musicData, paused, setPosition, setDuration }) => {
     }
   }, [musicData]);
 
-  // Điều khiển phát/tạm dừng khi paused thay đổi
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -32,7 +33,6 @@ const MusicPlayer = ({ musicData, paused, setPosition, setDuration }) => {
     }
   }, [paused]);
 
-  // Cập nhật thời gian phát
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -62,6 +62,6 @@ const MusicPlayer = ({ musicData, paused, setPosition, setDuration }) => {
       Trình duyệt không hỗ trợ phát âm thanh.
     </audio>
   );
-};
+});
 
 export default MusicPlayer;

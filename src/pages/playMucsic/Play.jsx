@@ -30,10 +30,13 @@ import shuffleWhite from "../../assets/shuffleW.png";
 import { useEffect } from "react";
 import { Links } from "react-router-dom";
 import MusicPlayer from "./MusicPlayer";
+import { useRef } from "react";
 export const Play = ({ open }) => {
   const navigate = useNavigate();
+  const audioRef = useRef();
 
-  const { setIsPlay, musicData, position, setPosition, duration ,setDuration} = useLayout();
+  const { setIsPlay, musicData, position, setPosition, duration, setDuration } =
+    useLayout();
 
   const [isNext, setIsNext] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
@@ -47,7 +50,12 @@ export const Play = ({ open }) => {
   useEffect(() => {
     setPosition(0);
   }, [musicData]);
-
+  const handleSliderChange = (_, value) => {
+    setPosition(value);
+    if (audioRef.current) {
+      audioRef.current.currentTime = value;
+    }
+  };
   const handleMenuClick = (e) => setAnchorElMenu(e.currentTarget);
   const handleCloseMenu = () => setAnchorElMenu(null);
 
@@ -125,7 +133,7 @@ export const Play = ({ open }) => {
             min={0}
             step={1}
             max={duration}
-            onChange={(_, v) => setPosition(v)}
+            onChange={handleSliderChange}
             sx={{
               color: "red",
               height: 4,
@@ -157,7 +165,7 @@ export const Play = ({ open }) => {
                 <SkipPrevious className="text-white" />
               </IconButton>
               <IconButton onClick={() => setPaused(!paused)}>
-                {paused ? (
+                {paused || position === duration ? (
                   <PlayArrowRounded
                     className="text-white"
                     sx={{ fontSize: 30 }}
@@ -398,6 +406,7 @@ export const Play = ({ open }) => {
             <MusicPlayer
               musicData={musicData}
               paused={paused}
+              ref={audioRef}
               setPosition={setPosition}
               setDuration={setDuration}
             />

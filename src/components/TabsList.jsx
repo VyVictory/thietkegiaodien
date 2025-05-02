@@ -26,14 +26,14 @@ const TabsList = () => {
     { key: "lyrics", label: "Lời nhạc" },
     { key: "related", label: "Liên quan" },
   ];
-  useEffect(() => {
-    if (currentWordRef.current) {
-      currentWordRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-  }, [currentWordIndex]);
+//   useEffect(() => {
+//     if (currentWordRef.current) {
+//       currentWordRef.current.scrollIntoView({
+//         behavior: "smooth",
+//         block: "center",
+//       });
+//     }
+//   }, [currentWordIndex]);
 
   return (
     <div className="flex flex-col h-full md:max-h-full">
