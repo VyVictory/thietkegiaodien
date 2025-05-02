@@ -21,8 +21,7 @@ import {
   Help,
   Feedback,
 } from "@mui/icons-material";
-import { useLayout } from "../../context/LayoutProvider";
-import png300 from "../../assets/300.png";
+import { useLayout } from "../../context/LayoutProvider"; 
 import authToken from "../storage/authToken";
 
 export const UserDropDow = () => {
@@ -46,7 +45,7 @@ export const UserDropDow = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  console.log(isLogin);
+ 
   return (
     <>
       <div className="flex items-center gap-4">

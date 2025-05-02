@@ -82,7 +82,10 @@ export default function Nav() {
         </Link>
       </div>
 
-      <div className="flex-1 px-4 hidden md:flex justify-center relative" ref={searchRef}>
+      <div
+        className="flex-1 px-4 hidden md:flex justify-center relative"
+        ref={searchRef}
+      >
         <div className="relative w-full max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
@@ -120,7 +123,9 @@ export default function Nav() {
                   />
                   <div className="flex flex-col overflow-hidden">
                     <span className="truncate">{track.trackName}</span>
-                    <span className="text-gray-400 truncate text-xs">{track.artistName}</span>
+                    <span className="text-gray-400 truncate text-xs">
+                      {track.artistName}
+                    </span>
                   </div>
                 </li>
               ))}

@@ -77,7 +77,14 @@ export default function ProfileModal({ userData, onUpdate }) {
 
   return (
     <Dialog open={true} maxWidth="xs" fullWidth>
-      <Box sx={{ backgroundColor: "#1c1c1c", color: "#fff", minHeight: "80vh", borderRadius: 2 }}>
+      <Box
+        sx={{
+          backgroundColor: "#1c1c1c",
+          color: "#fff",
+          minHeight: "80vh",
+          borderRadius: 2,
+        }}
+      >
         <DialogTitle sx={{ color: "#fff", textAlign: "center" }}>
           Cập nhật thông tin cá nhân
         </DialogTitle>
@@ -107,7 +114,12 @@ export default function ProfileModal({ userData, onUpdate }) {
                 }}
               >
                 <EditIcon sx={{ color: "#00bcd4" }} />
-                <input hidden accept="image/*" type="file" onChange={handleFileChange} />
+                <input
+                  hidden
+                  accept="image/*"
+                  type="file"
+                  onChange={handleFileChange}
+                />
               </IconButton>
             </Box>
 
@@ -119,8 +131,8 @@ export default function ProfileModal({ userData, onUpdate }) {
                   field === "fullName"
                     ? "Họ và tên"
                     : field === "email"
-                    ? "Email"
-                    : "Số điện thoại"
+                      ? "Email"
+                      : "Số điện thoại"
                 }
                 variant="filled"
                 value={formData[field]}
@@ -144,7 +156,7 @@ export default function ProfileModal({ userData, onUpdate }) {
           </Button>
           <Button
             variant="contained"
-            onClick={handleSubmit}
+            onClick={() => handleSubmit}
             sx={{
               backgroundColor: "#00bcd4",
               color: "#000",

@@ -25,8 +25,11 @@ export const LayoutProvider = ({ children }) => {
       setIsLogin(true);
     } else {
       setIsLogin(false);
-    }
+    } 
   }, [token]);
+  useEffect(() => {
+    console.log("isModal", modal);
+  }, [modal]); // Empty array means this effect runs only once, when the component mounts
   return (
     <LayoutContext.Provider
       value={{

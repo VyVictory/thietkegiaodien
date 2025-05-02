@@ -1,19 +1,21 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useMemo } from "react";
 import { useLayout } from "../context/LayoutProvider";
 import { loadPage } from "../components/modal/loadPage";
 import { Play } from "../pages/playMucsic/Play";
 
 export const OutSite = () => {
   const { isPlay, modal } = useLayout();
-  const ModalComponent = loadPage(modal);
+  
+  const ModalComponent = useMemo(() => loadPage(modal), [modal]);
 
   return (
     <>
-      {" "}
       <Play open={isPlay} />
-      <Suspense fallback={null}>
-        <ModalComponent open={modal} />
-      </Suspense>
+      {modal && (
+        <Suspense fallback={null}>
+          <ModalComponent open={modal} key={modal} />
+        </Suspense>
+      )}
     </>
   );
 };
