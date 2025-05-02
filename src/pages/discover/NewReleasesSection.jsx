@@ -74,14 +74,14 @@ export default function NewReleasesSection({ items, title, isVideo }) {
               </div>
             ))}
           {isVideo &&
-            items.map((it) => (
+            items.map((it, index) => (
               <Link
                 key={it.id}
-                to={`/video/${it.id}`}
+                to={`/listen/${it.id}`}
                 className="min-w-[200px] flex-shrink-0"
               >
                 <img
-                  src={it.img}
+                  src={`http://i1.ytimg.com/vi/VGazSZUYyf4/${index%3}.jpg`}
                   alt={it.title}
                   className="rounded-md w-full h-32 object-cover"
                 />

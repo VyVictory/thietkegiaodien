@@ -42,8 +42,8 @@ export const LoginForm = () => {
     <>
       <div className="relative rounded-lg">
         <div className="relative px-8 pt-16 pb-20 rounded-lg bg-gradient-to-b from-[#d8c5ff] to-[#a7c7ff]">
-          <h1 className="mb-12 text-5xl font-bold text-center text-white">
-            Login
+          <h1 className="mb-12 text-5xl font-bold text-center text-black">
+            Đăng nhập
           </h1>
 
           {/* Email input */}
@@ -123,13 +123,13 @@ export const LoginForm = () => {
             onClick={handleLogin}
             className="w-full py-3 mb-4 font-medium text-white transition-colors rounded-full bg-[#6a74cf] hover:bg-[#5a64bf]"
           >
-            Login
+            Đăng nhập
           </button>
 
           {/* Forgot password link */}
           <div className="text-center pb-6">
-            <Link to="#" className="text-white hover:underline">
-              Forgot your password?
+            <Link to="#" className="text-[#130075] hover:underline">
+              Quên mật khẩu?
             </Link>
           </div>
 
@@ -167,7 +167,7 @@ export const LoginForm = () => {
         {/* Bottom section with social logins */}
         <div className="px-8 py-6 bg-white rounded-b-lg">
           <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
-            <button className="flex items-center justify-center flex-1 px-4 py-2 text-sm font-medium text-[#e33e2b] bg-[#ffefed] rounded-md hover:bg-[#ffe0dc]">
+            <button className="flex items-center justify-center flex-1 px-4 py-2 text-xs font-medium text-nowrap text-[#e33e2b] bg-[#ffefed] rounded-md hover:bg-[#ffe0dc]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -177,7 +177,7 @@ export const LoginForm = () => {
               </svg>
               Login with Google
             </button>
-            <button className="flex items-center justify-center flex-1 px-4 py-2 text-sm font-medium text-[#1877f2] bg-[#e7f3ff] rounded-md hover:bg-[#d8ebff]">
+            <button className="flex items-center justify-center flex-1 px-4 py-2 text-xs text-nowrap font-medium text-[#1877f2] bg-[#e7f3ff] rounded-md hover:bg-[#d8ebff]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -191,14 +191,14 @@ export const LoginForm = () => {
 
           {/* Sign up link */}
           <div className="flex items-center justify-center mt-6 text-sm">
-            <span className="text-gray-600">Don't have account?</span>
+            <span className="text-gray-600">Tôi không có tài khoản?</span>
             <Link
               onClick={() => {
                 setLoginForm("Register");
               }}
-              className="ml-2 font-medium text-[#6a74cf] hover:underline"
+              className="ml-2 font-medium uppercase text-[#6a74cf] hover:underline"
             >
-              Sign up
+              Đăng ký
             </Link>
           </div>
         </div>

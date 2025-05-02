@@ -29,8 +29,8 @@ export default function ProfileModal({ userData, onUpdate }) {
     if (storedProfile) {
       const parsed = JSON.parse(storedProfile);
       setFormData({
-        fullName: parsed.fullName || "",
-        email: parsed.email || "",
+        fullName: parsed.fullName || "admin",
+        email: parsed.email || "admin@gmail.com",
         phone: parsed.phone || "",
         avatar: null,
         previewAvatar: parsed.avatar || null,
@@ -71,6 +71,7 @@ export default function ProfileModal({ userData, onUpdate }) {
     };
     sessionStorage.setItem("userProfile", JSON.stringify(updatedUser));
     if (onUpdate) onUpdate(updatedUser);
+    window.location.reload();
     setModal(null);
   };
 

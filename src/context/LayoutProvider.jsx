@@ -13,6 +13,9 @@ export const LayoutProvider = ({ children }) => {
   const [modal, setModal] = useState(null);
   const [LoginForm, setLoginForm] = useState("Login");
   const [isPlay, setIsPlay] = useState(false);
+  const [musicData, setMusicData] = useState(null);
+  const [musicDetail, setMusicDetail] = useState(null);
+  const [user, setUser] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const token = authToken.getToken();
   useEffect(() => {
@@ -20,7 +23,7 @@ export const LayoutProvider = ({ children }) => {
       setIsLogin(true);
     } else {
       setIsLogin(false);
-    } 
+    }
   }, [token]);
   return (
     <LayoutContext.Provider
@@ -33,6 +36,12 @@ export const LayoutProvider = ({ children }) => {
         setIsLogin,
         LoginForm,
         setLoginForm,
+        musicData,
+        setMusicData,
+        user,
+        musicDetail,
+        setMusicDetail,
+        setUser,
       }}
     >
       {children}

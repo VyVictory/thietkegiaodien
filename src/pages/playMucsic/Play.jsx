@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Popover from "@mui/material/Popover";
+import { useNavigate } from "react-router-dom";
 
 import {
   SkipPrevious,
@@ -17,18 +18,24 @@ import {
   VolumeUpRounded,
   VolumeOffRounded,
   MoreVertOutlined,
-  ExpandLessRounded,
   Favorite,
   PlaylistAdd,
   Circle,
+  ArrowDropUp,
+  Cached,
 } from "@mui/icons-material";
-import { Delete, DotIcon } from "lucide-react";
+import { Delete } from "lucide-react";
 import { useLayout } from "../../context/LayoutProvider";
-
+import shuffleWhite from "../../assets/shuffleW.png";
+import { useEffect } from "react";
+import { Links } from "react-router-dom";
 export const Play = ({ open }) => {
+  const navigate = useNavigate();
+
   const duration = 300;
-  const { setIsPlay } = useLayout();
+  const { setIsPlay, musicData } = useLayout();
   const [position, setPosition] = React.useState(0);
+  const [isNext, setIsNext] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
   const [isLike, setLike] = React.useState(0);
   const [anchorElMenu, setAnchorElMenu] = React.useState(null);
@@ -37,7 +44,40 @@ export const Play = ({ open }) => {
 
   const openMenu = Boolean(anchorElMenu);
   const openVolume = Boolean(anchorElVolume);
+  useEffect(() => {
+    setPosition(0);
+  }, [musicData]);
 
+  const handleMenuClick = (e) => setAnchorElMenu(e.currentTarget);
+  const handleCloseMenu = () => setAnchorElMenu(null);
+
+  const handleVolumeClick = (e) => setAnchorElVolume(e.currentTarget);
+  const handleCloseVolume = () => setAnchorElVolume(null);
+  const handleVolumeChange = (_, val) => setVolume(val);
+
+  const formatDuration = (v) => {
+    const m = Math.floor(v / 60);
+    const s = v - m * 60;
+    return `${m}:${s < 10 ? `0${s}` : s}`;
+  };
+  const formatVolume = (v) => `${Math.round(v)}%`;
+  React.useEffect(() => {
+    let interval = null;
+
+    if (!paused) {
+      interval = setInterval(() => {
+        setPosition((prev) => {
+          if (prev < duration) return prev + 1;
+          clearInterval(interval);
+          return prev;
+        });
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [paused]);
   const menuItems = [
     {
       icon: <Favorite className="mr-2" />,
@@ -71,42 +111,10 @@ export const Play = ({ open }) => {
       name: "un_like",
     },
   ];
-
-  const handleMenuClick = (e) => setAnchorElMenu(e.currentTarget);
-  const handleCloseMenu = () => setAnchorElMenu(null);
-
-  const handleVolumeClick = (e) => setAnchorElVolume(e.currentTarget);
-  const handleCloseVolume = () => setAnchorElVolume(null);
-  const handleVolumeChange = (_, val) => setVolume(val);
-
-  const formatDuration = (v) => {
-    const m = Math.floor(v / 60);
-    const s = v - m * 60;
-    return `${m}:${s < 10 ? `0${s}` : s}`;
-  };
-  const formatVolume = (v) => `${Math.round(v)}%`;
-  React.useEffect(() => {
-    let interval = null;
-
-    if (!paused) {
-      interval = setInterval(() => {
-        setPosition((prev) => {
-          if (prev < duration) return prev + 1;
-          clearInterval(interval);
-          return prev;
-        });
-      }, 1000);
-    } else {
-      clearInterval(interval);
-    }
-
-    return () => clearInterval(interval);
-  }, [paused]);
-
   if (!open) return null;
 
   return (
-    <div className="w-full fixed h-20 bottom-0 left-0 z-90 text-white z-50">
+    <div className="w-full fixed h-20 bottom-0 left-0  text-white z-30 xl:z-50">
       <div className="bg-stone-900 h-full relative flex flex-col">
         {/* Time Slider */}
         <div className="absolute -top-[13px] w-full">
@@ -170,17 +178,22 @@ export const Play = ({ open }) => {
           {/* CENTER */}
           <div className="flex items-center gap-3 flex-1 overflow-hidden  justify-center">
             <img
-              src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/d9/fa/1b/lost-valley.jpg?w=1200&h=-1&s=1"
+              src={
+                musicData?.artworkUrl100 ||
+                "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/d9/fa/1b/lost-valley.jpg?w=1200&h=-1&s=1"
+              }
               alt="Thumbnail"
               className="hidden sm:block h-14 w-16 object-cover rounded flex-shrink-0"
             />
             <div className="flex flex-col overflow-hidden mb-2 gap-3">
               <span className="font-semibold truncate">
-                Nhạc TIK TOK Trung Quốc 2022 " Tuyệt Đỉnh Gây Nghiện " ♫ Top 10
-                Nhạc EDM
+                {musicData?.trackName ||
+                  ' Nhạc TIK TOK Trung Quốc 2022 " Tuyệt Đỉnh Gây Nghiện " ♫ Top 10 Nhạc EDM'}
               </span>
               <div className="text-xs text-gray-400 flex items-center gap-1 truncate">
-                <span className="hover:underline cursor-pointer">Khalid</span>
+                <span className="hover:underline cursor-pointer">
+                  {musicData?.artistName || "EDM Music"}
+                </span>
                 <Circle sx={{ width: "6px" }} />
                 <span>439 Tr lượt xem</span>
                 <Circle sx={{ width: "6px" }} />
@@ -201,58 +214,79 @@ export const Play = ({ open }) => {
 
           {/* RIGHT */}
           <div className="flex items-center ">
-            <IconButton onClick={handleVolumeClick}>
-              {volume === 0 ? (
-                <VolumeOffRounded className="text-gray-200" />
-              ) : (
-                <VolumeUpRounded className="text-gray-200" />
-              )}
-            </IconButton>
-            <Popover
-              open={openVolume}
-              anchorEl={anchorElVolume}
-              onClose={handleCloseVolume}
-              anchorOrigin={{ vertical: "top", horizontal: "right" }}
-              transformOrigin={{ vertical: "bottom", horizontal: "right" }}
-              PaperProps={{
-                style: {
-                  backgroundColor: "rgba(0, 0, 0, 0.8)",
-                  padding: 8,
-                  borderRadius: 8,
-                  boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-                },
-              }}
-            >
-              <Box className="h-[160px] flex flex-col items-center justify-center">
-                <Typography className="text-white mb-1">
-                  {formatVolume(volume)}
-                </Typography>
-                <Slider
-                  orientation="vertical"
-                  step={1}
-                  min={0}
-                  max={100}
-                  value={volume}
-                  onChange={handleVolumeChange}
-                  sx={{
-                    color: "red",
-                    height: 120,
-                    "& .MuiSlider-thumb": {
-                      backgroundColor: "red",
-                      width: 14,
-                      height: 14,
-                    },
-                    "& .MuiSlider-track": { backgroundColor: "red" },
-                    "& .MuiSlider-rail": { bgcolor: "#555" },
-                  }}
+            <div className="hidden sm:flex items-center">
+              <IconButton onClick={handleVolumeClick}>
+                {volume === 0 ? (
+                  <VolumeOffRounded className="text-gray-200" />
+                ) : (
+                  <VolumeUpRounded className="text-gray-200" />
+                )}
+              </IconButton>
+              <Popover
+                open={openVolume}
+                anchorEl={anchorElVolume}
+                onClose={handleCloseVolume}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                transformOrigin={{ vertical: "bottom", horizontal: "right" }}
+                PaperProps={{
+                  style: {
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                    padding: 8,
+                    borderRadius: 8,
+                    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+                    overflow: "hidden",
+                  },
+                }}
+              >
+                <Box className="h-[160px] flex flex-col items-center justify-center">
+                  <Typography className="text-white mb-1">
+                    {formatVolume(volume)}
+                  </Typography>
+                  <Slider
+                    orientation="vertical"
+                    step={1}
+                    min={0}
+                    max={100}
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    sx={{
+                      color: "red",
+                      height: 120,
+                      "& .MuiSlider-thumb": {
+                        backgroundColor: "red",
+                        width: 14,
+                        height: 14,
+                      },
+                      "& .MuiSlider-track": { backgroundColor: "red" },
+                      "& .MuiSlider-rail": { bgcolor: "#555" },
+                    }}
+                  />
+                </Box>
+              </Popover>
+              <IconButton
+                onClick={() => {
+                  setIsNext(1);
+                }}
+                className="hidden sm:block"
+              >
+                <img
+                  src={shuffleWhite}
+                  alt="Album"
+                  className={`w-6 h-6 rounded-full `}
                 />
-              </Box>
-            </Popover>
-
+              </IconButton>
+              <IconButton
+                onClick={() => setIsNext(2)}
+                className="hidden sm:block"
+              >
+                <Cached className="text-gray-300" fontSize="medium" />
+              </IconButton>
+            </div>
             {/* More Menu */}
             <IconButton onClick={handleMenuClick}>
               <MoreVertOutlined className="text-gray-400" />
             </IconButton>
+
             <Menu
               anchorEl={anchorElMenu}
               open={openMenu}
@@ -279,7 +313,7 @@ export const Play = ({ open }) => {
                     else if (item.name === "un_like")
                       setLike(isLike === 2 ? 0 : 2);
                     else if (item.label === "Xóa khỏi hàng đợi")
-                      setIsPlay(false); // 👈 Thêm dòng này
+                      setIsPlay(false);
                   }}
                   sx={{
                     color: "#cacaca",
@@ -289,11 +323,84 @@ export const Play = ({ open }) => {
                   {item.icon} {item.label}
                 </MenuItem>
               ))}
+              <div className="justify-center flex items-center gap-2 sm:hidden">
+                <IconButton onClick={handleVolumeClick}>
+                  {volume === 0 ? (
+                    <VolumeOffRounded className="text-gray-200" />
+                  ) : (
+                    <VolumeUpRounded className="text-gray-200" />
+                  )}
+                </IconButton>
+                <Popover
+                  open={openVolume}
+                  anchorEl={anchorElVolume}
+                  onClose={handleCloseVolume}
+                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                  transformOrigin={{ vertical: "bottom", horizontal: "right" }}
+                  PaperProps={{
+                    style: {
+                      backgroundColor: "rgba(0, 0, 0, 0.8)",
+                      padding: 8,
+                      borderRadius: 8,
+                      boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+                      overflow: "hidden",
+                    },
+                  }}
+                >
+                  <Box className="h-[160px] flex flex-col items-center justify-center">
+                    <Typography className="text-white mb-1">
+                      {formatVolume(volume)}
+                    </Typography>
+                    <Slider
+                      orientation="vertical"
+                      step={1}
+                      min={0}
+                      max={100}
+                      value={volume}
+                      onChange={handleVolumeChange}
+                      sx={{
+                        color: "red",
+                        height: 120,
+                        "& .MuiSlider-thumb": {
+                          backgroundColor: "red",
+                          width: 14,
+                          height: 14,
+                        },
+                        "& .MuiSlider-track": { backgroundColor: "red" },
+                        "& .MuiSlider-rail": { bgcolor: "#555" },
+                      }}
+                    />
+                  </Box>
+                </Popover>
+                <IconButton
+                  onClick={() => {
+                    setIsNext(1);
+                  }}
+                  className="hidden sm:block"
+                >
+                  <img
+                    src={shuffleWhite}
+                    alt="Album"
+                    className={`w-6 h-6 rounded-full `}
+                  />
+                </IconButton>
+                <IconButton
+                  onClick={() => setIsNext(2)}
+                  className="hidden sm:block"
+                >
+                  <Cached className="text-gray-300" fontSize="medium" />
+                </IconButton>
+              </div>
             </Menu>
 
             {/* Collapse */}
-            <IconButton className="hidden sm:block">
-              <ExpandLessRounded className="text-gray-400" />
+            <IconButton
+              onClick={() => {
+                navigate("/listen/"+musicData?.collectionId);
+              }}
+              className="hidden sm:block"
+            >
+              <ArrowDropUp className="text-white" fontSize="large" />
             </IconButton>
           </div>
         </div>

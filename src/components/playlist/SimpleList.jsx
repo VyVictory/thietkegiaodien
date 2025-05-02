@@ -57,8 +57,10 @@ export default function SimpleList({ wid }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 flex-shrink-0">
-        <button onClick={handleLike} className="hidden sm:block">
+      <div 
+      className="flex items-center gap-2 flex-shrink-0">
+        <button 
+        onClick={handleLike} className="hidden sm:block">
           {like ? (
             <ThumbUpAlt className="white" />
           ) : (

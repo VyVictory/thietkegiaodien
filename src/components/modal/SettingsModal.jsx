@@ -17,10 +17,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useLayout } from "../../context/LayoutProvider";
 const tabs = [
   { key: "general", label: "Chung" },
-  { key: "playback", label: "Tính năng phát" },
+  { key: "playback", label: "Tính năng nghe" },
   { key: "download", label: "Nội dung tải xuống" },
-  { key: "privacy", label: "Quyền riêng tư và dữ liệu" },
-  { key: "channel", label: "Cài đặt kênh" },
+  { key: "privacy", label: "Quyền riêng tư và dữ liệu" }, 
   { key: "recommend", label: "Đề xuất" },
   { key: "lang", label: "Ngôn ngữ và vị trí" },
   { key: "about", label: "Giới thiệu" },

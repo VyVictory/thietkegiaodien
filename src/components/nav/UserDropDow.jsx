@@ -46,15 +46,15 @@ export const UserDropDow = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  console.log(isLogin);
   return (
     <>
       <div className="flex items-center gap-4">
-        {isLogin && userData ? (
+        {isLogin  ? (
           <IconButton onClick={handleAvatarClick}>
             <Avatar
-              alt={userData.fullName || "User"} // Use full name if available
-              src={userData.avatar || "https://i.pravatar.cc/300"} // Use avatar or fallback
+              alt={userData?.fullName || "User"} // Use full name if available
+              src={userData?.avatar || "https://i.pravatar.cc/300"} // Use avatar or fallback
               className="w-8 h-8 hover:scale-110 transition-transform"
             />
           </IconButton>
@@ -83,7 +83,9 @@ export const UserDropDow = () => {
               <Avatar src={userData?.avatar || "https://i.pravatar.cc/300"} />
             </ListItemIcon>
             <div className="pl-2">
-              <Typography variant="subtitle1">{userData?.fullName || "User"}</Typography>
+              <Typography variant="subtitle1">
+                {userData?.fullName || "User"}
+              </Typography>
               <Typography color="primary" variant="body2">
                 @{userData?.email?.split("@")[0] || "username"}
               </Typography>

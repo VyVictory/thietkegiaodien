@@ -1,29 +1,31 @@
 import { useState } from "react";
 import { useLayout } from "../../../context/LayoutProvider";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const { setModal, setLoginForm } = useLayout();
+
   return (
     <div
       onClick={(e) => e.stopPropagation()}
       className="relative w-full max-w-md rounded-lg bg-white p-8 shadow-lg"
     >
       <h1 className="mb-8 text-center text-2xl font-semibold text-black">
-        Create New Account
+        Tạo tài khoản mới
       </h1>
 
-      <form className="space-y-6">
+      <div className="space-y-6">
         <div className="space-y-2">
           <label htmlFor="fullName" className="block text-black">
-            Full Name
+            Họ và tên
           </label>
           <input
             id="fullName"
             type="text"
-            placeholder="Enter Your Full Name"
+            placeholder="Nhập họ và tên"
             className="w-full rounded-md border border-[#d0d0d0] bg-white px-3 py-2 text-black placeholder:text-[#7a7a7a]/60 focus:outline-none focus:ring-2 focus:ring-[#916bbf]/50"
           />
         </div>
@@ -42,13 +44,13 @@ export const RegisterForm = () => {
 
         <div className="space-y-2">
           <label htmlFor="password" className="block text-black">
-            Password
+            Mật khẩu  
           </label>
           <div className="relative">
             <input
               id="password"
               type={showPassword ? "text" : "password"}
-              placeholder="Enter Your Password"
+              placeholder="Nhập lại mật khẩu"
               className="w-full rounded-md border border-[#d0d0d0] bg-white px-3 py-2 pr-10 text-black placeholder:text-[#7a7a7a]/60 focus:outline-none focus:ring-2 focus:ring-[#916bbf]/50"
             />
             <button
@@ -102,34 +104,37 @@ export const RegisterForm = () => {
             className="h-5 w-5 rounded border-[#916bbf] accent-[#916bbf]"
           />
           <label htmlFor="terms" className="text-sm leading-none">
-            I agree with the{" "}
+            Tôi chấp nhận{" "}
             <a href="#" className="text-[#916bbf] hover:underline">
-              Terms of services
+              Điều khoản dịch vụ
             </a>{" "}
-            and{" "}
+            và{" "}
             <a href="#" className="text-[#916bbf] hover:underline">
-              Privacy Policy
+              Bảo mật
             </a>
           </label>
         </div>
 
         <button
           type="submit"
+          onClick={() => (
+            toast.success("Đăng ký thành công"), setLoginForm("Login")
+          )}
           className="w-full rounded-md bg-[#916bbf] py-3 text-white hover:bg-[#916bbf]/90 transition-colors"
         >
-          Sign Up
+         Đăng ký
         </button>
 
         <div className="mt-4 text-center">
-          <span className="text-[#7a7a7a]">I have account?</span>{" "}
+          <span className="text-[#7a7a7a]">tôi có tài khoản?</span>{" "}
           <Link
             onClick={() => setLoginForm("Login")}
             className="text-[#916bbf] hover:underline"
           >
-            Login
+            Đăng nhập
           </Link>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
