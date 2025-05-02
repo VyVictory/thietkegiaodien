@@ -1,6 +1,6 @@
 // GenreDiscover.js
 import React, { useEffect, useState } from "react";
-import NewReleasesSection from "./NewReleasesSection"; // component render grid
+import SimpleMusic from "../../components/music/SimpleMusic";
 import { useParams } from "react-router-dom";
 
 const genres = [
@@ -51,6 +51,7 @@ export default function GenreDiscover() {
 
     fetchDiscoverData();
   }, []);
+
   // Khi đổi thể loại, fetch từ iTunes
   useEffect(() => {
     async function fetchByGenre() {
@@ -84,7 +85,7 @@ export default function GenreDiscover() {
   }, [selectedGenre]);
 
   return (
-    <div className="px-4 py-6 space-y-6">
+    <div className=" py-6 space-y-6">
       {/* Genre Tabs */}
       <div className="flex space-x-4 overflow-x-auto pb-2">
         {moods.map((g) => (
@@ -107,15 +108,22 @@ export default function GenreDiscover() {
         {selectedGenre} Hot Tracks
       </h2>
 
-      {/* Music Grid */}
+      {/* Music List */}
       {loading ? (
         <p className="text-gray-400">Đang tải...</p>
       ) : tracks.length > 0 ? (
-        <NewReleasesSection
-          isVideo={false}
-          items={tracks}
-          title={null} // nếu bạn muốn tự render heading
-        />
+        <div className="flex flex-wrap gap-10 justify-center">
+          {tracks.map((it) => (
+            <SimpleMusic
+              key={it.id}
+              imageSrc={it.imageSrc}
+              title={it.title}
+              artistName={it.artistName}
+              playlistId={it.playlistId}
+              artistId={it.artistId}
+            />
+          ))}
+        </div>
       ) : (
         <p className="text-gray-400">Không tìm thấy kết quả.</p>
       )}
