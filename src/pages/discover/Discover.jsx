@@ -4,11 +4,11 @@ import NewReleasesSection from "./NewReleasesSection";
 import mockVideos from "../../json/mockVideos.json";
 import { FaMusic, FaChartBar, FaHeadphones } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const CustomSelect = ({ options, defaultValue, onSelect }) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue);
-  const [isOpen, setIsOpen] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false); 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
@@ -90,6 +90,7 @@ export default function Discover() {
   const [activeSection, setActiveSection] = useState("releases");
   const [showAllMoods, setShowAllMoods] = useState(false);
   const [showAllGenres, setShowAllGenres] = useState(false);
+  const navigate = useNavigate();
   const selectOptions = [
     { value: "Toàn cầu", label: "Toàn cầu" },
     { value: "Việt nam", label: "Việt Nam" },
@@ -126,9 +127,9 @@ export default function Discover() {
         );
         const genreData = await genreRes.json();
         const tags = genreData.toptags.tag
-          .slice(0, 24)
+          .slice(0, 100)
           .map((tag) => tag.name)
-          .filter((tag) => tag.length < 20);
+          .filter((tag) => tag.length < 100);
         setMoods(tags);
 
         setNewVideos(mockVideos);
@@ -247,6 +248,9 @@ export default function Discover() {
                   {(showAllMoods ? moods : moods.slice(0, 18)).map((m, i) => (
                     <button
                       key={i}
+                      onClick={() =>
+                        navigate(`/discover/${encodeURIComponent(m)}`)
+                      }
                       className="w-full text-center text-sm px-3 py-1.5 border border-gray-600 rounded-full text-white hover:border-white cursor-pointer truncate"
                     >
                       {m}
@@ -270,16 +274,16 @@ export default function Discover() {
               <div className="mt-6">
                 <h3 className="text-gray-400 font-medium mb-3">Dòng nhạc</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-                  {(showAllGenres ? musicGenres : musicGenres.slice(0, 18)).map(
-                    (genre, i) => (
-                      <button
-                        key={i}
-                        className="w-full text-center text-sm px-3 py-1.5 border border-gray-600 rounded-full text-white hover:border-white cursor-pointer truncate"
-                      >
-                        {genre}
-                      </button>
-                    )
-                  )}
+                {(showAllGenres ? musicGenres : musicGenres.slice(0, 18)).map((genre, i) => (
+  <button
+    key={i}
+    onClick={() => navigate(`/discover/${encodeURIComponent(genre)}`)}
+    className="w-full text-center text-sm px-3 py-1.5 border border-gray-600 rounded-full text-white hover:border-white cursor-pointer truncate"
+  >
+    {genre}
+  </button>
+))}
+
                 </div>
 
                 {/* Nút chỉ hiển thị nếu chưa show hết */}

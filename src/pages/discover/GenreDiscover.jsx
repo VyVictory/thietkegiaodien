@@ -1,7 +1,7 @@
 // GenreDiscover.js
 import React, { useEffect, useState } from "react";
 import NewReleasesSection from "./NewReleasesSection"; // component render grid
-import mockVideos from "../../json/mockVideos.json"; // nếu muốn dùng mock
+import { useParams } from "react-router-dom";
 
 const genres = [
   "Pop",
@@ -17,10 +17,40 @@ const genres = [
 ];
 
 export default function GenreDiscover() {
-  const [selectedGenre, setSelectedGenre] = useState(genres[0]);
   const [tracks, setTracks] = useState([]);
+  const { id } = useParams(); // Lấy genre từ URL, ví dụ "rock"
+  const [selectedGenre, setSelectedGenre] = useState(decodeURIComponent(id));
   const [loading, setLoading] = useState(false);
+  const [moods, setMoods] = useState(genres); // Sử dụng initialMoods
+  useEffect(() => {
+    if (id) {
+      setSelectedGenre(decodeURIComponent(id));
+    }
+  }, [id]);
 
+  useEffect(() => {
+    async function fetchDiscoverData() {
+      setLoading(true);
+      try {
+        // Lấy dữ liệu moods (giữ nguyên logic hiện tại)
+        const genreRes = await fetch(
+          "https://ws.audioscrobbler.com/2.0/?method=tag.getTopTags&api_key=a8cdfc8f1ea7b05842cc73c59f1a7644&format=json"
+        );
+        const genreData = await genreRes.json();
+        const tags = genreData.toptags.tag
+          .slice(0, 24)
+          .map((tag) => tag.name)
+          .filter((tag) => tag.length < 8);
+        setMoods(tags);
+      } catch (error) {
+        console.error("Error loading discover data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchDiscoverData();
+  }, []);
   // Khi đổi thể loại, fetch từ iTunes
   useEffect(() => {
     async function fetchByGenre() {
@@ -57,7 +87,7 @@ export default function GenreDiscover() {
     <div className="px-4 py-6 space-y-6">
       {/* Genre Tabs */}
       <div className="flex space-x-4 overflow-x-auto pb-2">
-        {genres.map((g) => (
+        {moods.map((g) => (
           <button
             key={g}
             onClick={() => setSelectedGenre(g)}
