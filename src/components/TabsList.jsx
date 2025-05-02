@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import SimpleList from "./playlist/SimpleList";
 import { useLayout } from "../context/LayoutProvider";
 const TabsList = () => {
-  const [activeTab, setActiveTab] = useState("next");
+  const [activeTab, setActiveTab] = useState("lyrics");
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const currentWordRef = useRef(null);
   const { isPlay, musicData, detailMusic } = useLayout();
