@@ -13,9 +13,11 @@ export const LayoutProvider = ({ children }) => {
   const [modal, setModal] = useState(null);
   const [LoginForm, setLoginForm] = useState("Login");
   const [isPlay, setIsPlay] = useState(false);
+  const [duration, setDuration] = useState(240);
   const [musicData, setMusicData] = useState(null);
   const [musicDetail, setMusicDetail] = useState(null);
   const [user, setUser] = useState(null);
+  const [position, setPosition] = React.useState(0);
   const [isLogin, setIsLogin] = useState(false);
   const token = authToken.getToken();
   useEffect(() => {
@@ -41,7 +43,10 @@ export const LayoutProvider = ({ children }) => {
         user,
         musicDetail,
         setMusicDetail,
+        position,
+        setPosition,
         setUser,
+        duration,
       }}
     >
       {children}

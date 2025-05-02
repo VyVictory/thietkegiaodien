@@ -6,70 +6,20 @@ const TabsList = () => {
   const [activeTab, setActiveTab] = useState("lyrics");
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const currentWordRef = useRef(null);
-  const { isPlay, musicData, detailMusic } = useLayout();
-
-  const lyrics = `I'm only one call away
-I'll be there to save the day
-Superman got nothing on me-e
-I'm only one call away
-
-Call me, baby, if you need a friend
-I just wanna give you love
-C'mon, c'mon, c'mon
-Reaching out to you, so take a chance
-No matter where you go
-You know you're not alone
-
-I'm only one call away
-I'll be there to save the day
-Superman got nothing on me-e
-I'm only one call away
-
-Come along with me and don't be scared
-I just wanna set you free
-C'mon, c'mon, c'mon
-You and me can make it anywhere
-For now, we can stay here for a while
-Aye 'cause you know, I just wanna see you smile
-No matter where you go
-You know you're not alone
-
-I'm only one call away
-I'll be there to save the day
-Superman got nothing on me-e
-I'm only one call away
-
-Uh, bling my hotline, I'm only one call away
-You wanna ball, we only one mall away
-Aye, there, I see you again like Charlie say
-Again and again, that's always bae
-Back when I was poor, I only had a heart to break
-We was splittin' meals, two straws and a chocolate shake
-You had my back and that's true to facts
-When you need your boy, 
-pick up the phone and do the math, yeah
-
-I'm only one call away (I'm only one call away)
-I'll be there to save the day (Pick up the line, I got you)
-
-Superman got nothing on me-e
-I'm only one, I'm only one call away
-I'll be there to save the day
-Superman got nothing on me-e
-I'm only one call away
-I'm only one call away`;
+  const { isPlay, musicData, detailMusic, position, duration } = useLayout();
 
   const lines = lyrics.split("\n"); // giữ xuống dòng
   const wordsPerLine = lines.map((line) => line.split(/\s+/));
   const totalWords = wordsPerLine.flat().length;
-  useEffect(() => {
-    if (activeTab !== "lyrics" || !isPlay) return;
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prev) => (prev < totalWords - 1 ? prev + 1 : 0));
-    }, 400); // thời gian giữa các chữ
+  const durationd = duration || 300; // Giả sử bài hát dài 300 giây
 
-    return () => clearInterval(interval);
-  }, [activeTab, totalWords, isPlay, musicData, detailMusic]);
+  useEffect(() => {
+    if (activeTab !== "lyrics" || !isPlay || !position || durationd === 0)
+      return;
+
+    const index = Math.floor((position / durationd) * totalWords);
+    setCurrentWordIndex(index < totalWords ? index : totalWords - 1);
+  }, [position, activeTab, isPlay, totalWords]);
 
   const tabs = [
     { key: "next", label: "Tiếp theo" },
@@ -169,3 +119,65 @@ I'm only one call away`;
 };
 
 export default TabsList;
+
+const lyrics = `I'm only one call away
+I'll be there to save the day
+Superman got nothing on me-e
+I'm only one call away
+
+Call me, baby, if you need a friend
+I just wanna give you love
+C'mon, c'mon, c'mon
+Reaching out to you, so take a chance
+No matter where you go
+You know you're not alone
+
+I'm only one call away
+I'll be there to save the day
+Superman got nothing on me-e
+I'm only one call away
+
+Come along with me and don't be scared
+I just wanna set you free
+C'mon, c'mon, c'mon
+You and me can make it anywhere
+For now, we can stay here for a while
+Aye 'cause you know, I just wanna see you smile
+No matter where you go
+You know you're not alone
+
+I'm only one call away
+I'll be there to save the day
+Superman got nothing on me-e
+I'm only one call away
+
+Uh, bling my hotline, I'm only one call away
+You wanna ball, we only one mall away
+Aye, there, I see you again like Charlie say
+Again and again, that's always bae
+Back when I was poor, I only had a heart to break
+We was splittin' meals, two straws and a chocolate shake
+You had my back and that's true to facts
+When you need your boy, 
+pick up the phone and do the math, yeah
+
+I'm only one call away (I'm only one call away)
+I'll be there to save the day (Pick up the line, I got you)
+
+Superman got nothing on me-e
+I'm only one, I'm only one call away
+I'll be there to save the day
+Superman got nothing on me-e
+I'm only one call away
+I'm only one call away
+
+I'm only one call away
+I'll be there to save the day
+Superman got nothing on me-e
+I'm only one call away
+
+Call me, baby, if you need a friend
+I just wanna give you love
+C'mon, c'mon, c'mon
+Reaching out to you, so take a chance 
+`;

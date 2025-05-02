@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Popover from "@mui/material/Popover";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   SkipPrevious,
@@ -32,9 +32,8 @@ import { Links } from "react-router-dom";
 export const Play = ({ open }) => {
   const navigate = useNavigate();
 
-  const duration = 300;
-  const { setIsPlay, musicData } = useLayout();
-  const [position, setPosition] = React.useState(0);
+  const { setIsPlay, musicData, position, setPosition, duration } = useLayout();
+
   const [isNext, setIsNext] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
   const [isLike, setLike] = React.useState(0);
@@ -191,9 +190,12 @@ export const Play = ({ open }) => {
                   ' Nhạc TIK TOK Trung Quốc 2022 " Tuyệt Đỉnh Gây Nghiện " ♫ Top 10 Nhạc EDM'}
               </span>
               <div className="text-xs text-gray-400 flex items-center gap-1 truncate">
-                <span className="hover:underline cursor-pointer">
+                <Link
+                  to={"/singer/" + (musicData?.artistName || "EDM Music")}
+                  className="hover:underline cursor-pointer"
+                >
                   {musicData?.artistName || "EDM Music"}
-                </span>
+                </Link>
                 <Circle sx={{ width: "6px" }} />
                 <span>439 Tr lượt xem</span>
                 <Circle sx={{ width: "6px" }} />
@@ -396,7 +398,7 @@ export const Play = ({ open }) => {
             {/* Collapse */}
             <IconButton
               onClick={() => {
-                navigate("/listen/"+musicData?.collectionId);
+                navigate("/listen/" + musicData?.collectionId);
               }}
               className="hidden sm:block"
             >
