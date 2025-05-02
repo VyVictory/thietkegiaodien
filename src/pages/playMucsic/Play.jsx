@@ -24,6 +24,7 @@ import {
   ArrowDropUp,
   Cached,
 } from "@mui/icons-material";
+import Cookies from "js-cookie";
 import { Delete, Download } from "lucide-react";
 import { useLayout } from "../../context/LayoutProvider";
 import shuffleWhite from "../../assets/shuffleW.png";
@@ -56,36 +57,49 @@ export const Play = ({ open }) => {
       audioRef.current.currentTime = value;
     }
   };
+  useEffect(() => {
+    if (!musicData?.trackId) return;
+    const likedSongs = Cookies.get("likedSongs");
+    const likedSongsObj = likedSongs ? JSON.parse(likedSongs) : {};
+    setLike(likedSongsObj[musicData.trackId] || 0);
+  }, [musicData?.trackId]);
+
   const handleMenuClick = (e) => setAnchorElMenu(e.currentTarget);
   const handleCloseMenu = () => setAnchorElMenu(null);
 
   const handleVolumeClick = (e) => setAnchorElVolume(e.currentTarget);
   const handleCloseVolume = () => setAnchorElVolume(null);
   const handleVolumeChange = (_, val) => setVolume(val);
+  const updateLikedSongsCookie = (trackId, likedStatus) => {
+    const likedSongs = Cookies.get("likedSongs");
+    const likedSongsObj = likedSongs ? JSON.parse(likedSongs) : {};
 
+    if (likedStatus) {
+      likedSongsObj[trackId] = likedStatus;
+    } else {
+      delete likedSongsObj[trackId];
+    }
+
+    Cookies.set("likedSongs", JSON.stringify(likedSongsObj), { expires: 7 });
+  };
+
+  const handleLike = () => {
+    const newLikeStatus = isLike === 1 ? 0 : 1; // Toggle between liked (1) and not liked (0)
+    setLike(newLikeStatus);
+    console.log("newLikeStatus", newLikeStatus);
+    updateLikedSongsCookie(musicData.trackId, newLikeStatus);
+  };
+
+  const handleDislike = () => {
+    setLike(0);
+    updateLikedSongsCookie(musicData.trackId, 0);
+  };
   const formatDuration = (v) => {
     const m = Math.floor(v / 60);
     const s = v - m * 60;
     return `${m}:${s < 10 ? `0${s}` : s}`;
   };
   const formatVolume = (v) => `${Math.round(v)}%`;
-  // React.useEffect(() => {
-  //   let interval = null;
-
-  //   if (!paused) {
-  //     interval = setInterval(() => {
-  //       setPosition((prev) => {
-  //         if (prev < duration) return prev + 1;
-  //         clearInterval(interval);
-  //         return prev;
-  //       });
-  //     }, 1000);
-  //   } else {
-  //     clearInterval(interval);
-  //   }
-
-  //   return () => clearInterval(interval);
-  // }, [paused]);
   const menuItems = [
     {
       icon: <Favorite className="mr-2" />,
@@ -108,6 +122,7 @@ export const Play = ({ open }) => {
     {
       icon: (
         <ThumbUpOutlined
+          onClick={handleLike}
           className={`mr-2 ${isLike === 1 ? "text-blue-500" : ""}`}
         />
       ),
@@ -117,6 +132,7 @@ export const Play = ({ open }) => {
     {
       icon: (
         <ThumbDownAltOutlined
+          onClick={handleDislike}
           className={`mr-2 ${isLike === 2 ? "text-blue-500" : ""}`}
         />
       ),
@@ -218,11 +234,11 @@ export const Play = ({ open }) => {
             </div>{" "}
             <div className="hidden sm:flex gap-1 lg:pl-4">
               <ThumbUpOutlined
-                onClick={() => setLike(isLike === 1 ? 0 : 1)}
+                onClick={handleLike}
                 className={`${isLike === 1 ? "text-blue-500" : ""} cursor-pointer`}
               />
               <ThumbDownAltOutlined
-                onClick={() => setLike(isLike === 2 ? 0 : 2)}
+                onClick={handleDislike}
                 className={`${isLike === 2 ? "text-blue-500" : ""} cursor-pointer`}
               />
             </div>
@@ -327,11 +343,9 @@ export const Play = ({ open }) => {
                     if (item.name === "download") {
                       window.location.href = musicData?.previewUrl;
                     }
-                    if (item.name === "like") setLike(isLike === 1 ? 0 : 1);
-                    else if (item.name === "un_like")
-                      setLike(isLike === 2 ? 0 : 2);
-                    else if (item.label === "Xóa khỏi hàng đợi")
-                      setIsPlay(false);
+                    if (item.name === "like") handleLike();
+                    else if (item.name === "un_like") handleDislike();
+                    if (item.label === "Xóa khỏi hàng đợi") setIsPlay(false);
                   }}
                   sx={{
                     color: "#cacaca",
