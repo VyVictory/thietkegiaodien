@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 
-const MusicPlayer = forwardRef(({ musicData, paused, setPosition, setDuration }, ref) => {
+const MusicPlayer = forwardRef(({ musicData, paused, setPosition, setDuration, volume }, ref) => {
   const audioRef = useRef(null);
 
   // Cho phép cha truy cập vào audioRef
@@ -55,6 +55,14 @@ const MusicPlayer = forwardRef(({ musicData, paused, setPosition, setDuration },
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
     };
   }, [setPosition, setDuration]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      // Chuyển volume từ 0–100 thành 0.0–1.0
+      audio.volume = Math.min(Math.max(volume / 100, 0), 1);
+    }
+  }, [volume]);
 
   return (
     <audio ref={audioRef} controls style={{ display: "none" }}>

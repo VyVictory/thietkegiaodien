@@ -19,6 +19,8 @@ export const LayoutProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [position, setPosition] = React.useState(0);
   const [isLogin, setIsLogin] = useState(false);
+  const [volume, setVolume] = React.useState(50);
+
   const token = authToken.getToken();
   useEffect(() => {
     if (authToken.getToken()) {
@@ -51,6 +53,8 @@ export const LayoutProvider = ({ children }) => {
         setUser,
         duration,
         setDuration,
+        volume,
+        setVolume,
       }}
     >
       {children}

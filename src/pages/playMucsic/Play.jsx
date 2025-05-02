@@ -44,6 +44,8 @@ export const Play = ({ open }) => {
     duration,
     setDuration,
     setMusicDetail,
+    volume,
+    setVolume,
   } = useLayout();
 
   const [isNext, setIsNext] = React.useState(0);
@@ -51,7 +53,6 @@ export const Play = ({ open }) => {
   const [isLike, setLike] = React.useState(0);
   const [anchorElMenu, setAnchorElMenu] = React.useState(null);
   const [anchorElVolume, setAnchorElVolume] = React.useState(null);
-  const [volume, setVolume] = React.useState(50);
 
   const openMenu = Boolean(anchorElMenu);
   const openVolume = Boolean(anchorElVolume);
@@ -446,6 +447,7 @@ export const Play = ({ open }) => {
               musicData={musicData}
               paused={paused}
               ref={audioRef}
+              volume={volume}
               setPosition={setPosition}
               setDuration={setDuration}
             />
