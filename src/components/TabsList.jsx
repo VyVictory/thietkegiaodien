@@ -6,7 +6,7 @@ const TabsList = () => {
   const [activeTab, setActiveTab] = useState("lyrics");
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const currentWordRef = useRef(null);
-  const { isPlay, musicData, detailMusic, position, duration } = useLayout();
+  const { isPlay, musicData, musicDetail, position, duration } = useLayout();
 
   const lines = lyrics.split("\n"); // giữ xuống dòng
   const wordsPerLine = lines.map((line) => line.split(/\s+/));
@@ -16,7 +16,7 @@ const TabsList = () => {
   useEffect(() => {
     if (activeTab !== "lyrics" || !isPlay || !position || durationd === 0)
       return;
-
+    if (musicDetail?.artworkUrl100 !== musicData?.artworkUrl100) return;
     const index = Math.floor((position / durationd) * totalWords);
     setCurrentWordIndex(index < totalWords ? index : totalWords - 1);
   }, [position, activeTab, isPlay, totalWords]);
